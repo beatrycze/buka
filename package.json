@@ -5,6 +5,10 @@
   "main": "index.html",
   "author": "Beata Szczygielska <devinspe17@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "http-server",
+    "api": "mock-rest-api"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/beatrycze/buka.git"
