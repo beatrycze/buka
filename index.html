@@ -5,6 +5,8 @@
     <link href="app.css" rel="stylesheet">
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/handlebars/dist/handlebars.js"></script>
+    <script src="app.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -16,17 +18,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">BUKA</a>
+                <a id="home-page" class="navbar-brand" href="#">BUKA</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active dropdown">
+                    <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My library<span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Paper books</a></li>
-                            <li><a href="#">E-books</a></li>
-                            <li><a href="#">Audiobooks</a></li>
-                            <li><a href="#">All books</a></li>
+                            <li><a id ="paper-book-filter" href="#">Paper books</a></li>
+                            <li><a id ="e-book-filter" href="#">E-books</a></li>
+                            <li><a id ="udiobook-book-filter" href="#">Audiobooks</a></li>
+                            <li><a id ="all-books-filter" href="#">All books</a></li>
                             <li role="separator" class="divider"></li>
                             <li class="dropdown-header">Search for books by</li>
                             <li><a href="#">Forms</a></li>
@@ -34,18 +36,36 @@
                         </ul>
                         </li>
                     <li><a href="#add-book">Add book</a></li>
-                    <li><a href="#wish-list">Wish list</a></li>
+                    <li><a id="wish-list-page" href="#wish-list">Wish list</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
         </div>
     </nav>
 
     <div class="container">
+        <div id="container"></div>
+    </div><!-- /.container -->
+
+    <!-- HBS Temlates -->
+    <script id="home" type="text/x-handlebars-template">
         <div class="starter-template">
-            <h1>Hello, book lovers!</h1>
-            <p class="lead">Work in progress...</p>
+            <h1>{{title}}</h1>
+            <p class="lead">{{subtitle}}</p>
             <img src="img/buka1-s.png" />
         </div>
-    </div><!-- /.container -->
+    </script>
+
+    <script id="add-book" type="text/x-handlebars-template">
+        <div>
+            <h2>{{title}}</h2>
+        </div>
+    </script>
+
+    <script id="wish-list" type="text/x-handlebars-template">
+        <div>
+            <h2>{{title}}</h2>
+        </div>
+    </script>
+
 </body>
 </html>

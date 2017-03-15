@@ -42,3 +42,12 @@ body {
 .dropdown-header {
   color: #8f8b8b;
 }
+.navbar-inverse .navbar-nav > .open > a,
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
+  color: #fff;
+  background-color: #011463;
+}
+/*.active {
+  background-color: #011463;
+}*/
