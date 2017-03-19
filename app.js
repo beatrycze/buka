@@ -39,7 +39,7 @@ $(document).ready(function() {
     var wishListPageHtmlResult = wishListPageTemplate(context);
 
     $('#wish-list-page').on('click', function() {
-        $('#container').html(htmlResult);
+        $('#container').html(wishListPageHtmlResult);
     });
 
 });
