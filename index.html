@@ -67,5 +67,44 @@
         </div>
     </script>
 
+    <script id="paper-books" type="text/x-handlebars-template">
+        <ul>
+        {{#each paperBooks}}
+            <li>
+                <div class="row-separator">
+                    <i>{{title}}</i>, <strong>{{author}}</strong>
+                    <p>{{description}}</p>
+                </div>
+            </li>
+        {{/each}}
+        </ul>
+    </script>
+
+    <script id="e-books" type="text/x-handlebars-template">
+        <ul>
+        {{#each eBooks}}
+            <li>
+                <div class="row-separator">
+                    <i>{{title}}</i>, <strong>{{author}}</strong>
+                    <p>{{description}}</p>
+                </div>
+            </li>
+        {{/each}}
+        </ul>
+    </script>
+
+    <script id="audiobooks" type="text/x-handlebars-template">
+        <ul>
+        {{#each audiobooks}}
+            <li>
+                <div class="row-separator">
+                    <i>{{title}}</i>, <strong>{{author}}</strong>
+                    <p>{{description}}</p>
+                </div>
+            </li>
+        {{/each}}
+        </ul>
+    </script>
+
 </body>
 </html>

@@ -51,3 +51,7 @@ body {
 /*.active {
   background-color: #011463;
 }*/
+.row-separator {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
