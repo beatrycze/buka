@@ -68,7 +68,7 @@
     </script>
 
     <script id="paper-books" type="text/x-handlebars-template">
-        <ul>
+        <ol>
         {{#each paperBooks}}
             <li>
                 <div class="row-separator">
@@ -77,11 +77,11 @@
                 </div>
             </li>
         {{/each}}
-        </ul>
+        </ol>
     </script>
 
     <script id="e-books" type="text/x-handlebars-template">
-        <ul>
+        <ol>
         {{#each eBooks}}
             <li>
                 <div class="row-separator">
@@ -90,11 +90,11 @@
                 </div>
             </li>
         {{/each}}
-        </ul>
+        </ol>
     </script>
 
     <script id="audiobooks" type="text/x-handlebars-template">
-        <ul>
+        <ol>
         {{#each audiobooks}}
             <li>
                 <div class="row-separator">
@@ -103,7 +103,20 @@
                 </div>
             </li>
         {{/each}}
-        </ul>
+        </ol>
+    </script>
+
+    <script id="all-books" type="text/x-handlebars-template">
+        <ol>
+        {{#each allBooks}}
+            <li>
+                <div class="row-separator">
+                    <i>{{title}}</i>, <strong>{{author}}</strong>
+                    <p>{{description}}</p>
+                </div>
+            </li>
+        {{/each}}
+        </ol>
     </script>
 
 </body>

@@ -13,6 +13,7 @@ var app = {
             app.templates.paperBooksTemplate = app.helper.compileSingleHbsTemplate('#paper-books');
             app.templates.eBooksTemplate = app.helper.compileSingleHbsTemplate('#e-books');
             app.templates.audiobooksTemplate = app.helper.compileSingleHbsTemplate('#audiobooks');
+            app.templates.allBooksTemplate = app.helper.compileSingleHbsTemplate('#all-books');
         }
     },
     actions: {
@@ -32,7 +33,7 @@ var app = {
             $('#container').html(wishListPageHtmlResult);
         },
         displayPaperBooks: function() {
-            $.get('http://localhost:3000/books?bookTypeId=1').then(function(response) {
+            $.get('http://localhost:3000/books?bookTypeId=1').then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.paperBooksTemplate({
                     paperBooks: response
                 }));
@@ -51,6 +52,13 @@ var app = {
                     audiobooks: response
                 }));
             });
+        },
+        displayAllBooks: function() {
+            $.get('http://localhost:3000/books').then(function(response) {
+                $('#container').html(app.templates.allBooksTemplate({
+                    allBooks: response
+                }));
+            });
         }
     },
     eventHandlers: {
@@ -61,6 +69,7 @@ var app = {
             $('.dropdown-menu').on('click', '#paper-book-filter', app.actions.displayPaperBooks);
             $('.dropdown-menu').on('click', '#e-book-filter', app.actions.displayEbooks);
             $('.dropdown-menu').on('click', '#audiobook-filter', app.actions.displayAudiobooks);
+            $('.dropdown-menu').on('click', '#all-books-filter', app.actions.displayAllBooks);
         }
     },
     init: function() {
