@@ -1,6 +1,7 @@
 var app = {
     //...
     templates: {},
+    models: {},
     helper: {
         compileSingleHbsTemplate: function(selector) {
             var source = $(selector).html();
@@ -33,28 +34,28 @@ var app = {
             $('#container').html(wishListPageHtmlResult);
         },
         displayPaperBooks: function() {
-            $.get('http://localhost:3000/books?bookTypeId=1').then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
+            app.models.book.getCollection(1).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.paperBooksTemplate({
                     paperBooks: response
                 }));
             });
         },
         displayEbooks: function() {
-            $.get('http://localhost:3000/books?bookTypeId=2').then(function(response) {
+            app.models.book.getCollection(2).then(function(response) {
                 $('#container').html(app.templates.eBooksTemplate({
                     eBooks: response
                 }));
             });
         },
         displayAudiobooks: function() {
-            $.get('http://localhost:3000/books?bookTypeId=3').then(function(response) {
+            app.models.book.getCollection(3).then(function(response) {
                 $('#container').html(app.templates.audiobooksTemplate({
                     audiobooks: response
                 }));
             });
         },
         displayAllBooks: function() {
-            $.get('http://localhost:3000/books').then(function(response) {
+            app.models.book.getCollection().then(function(response) {
                 $('#container').html(app.templates.allBooksTemplate({
                     allBooks: response
                 }));
