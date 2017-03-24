@@ -15,6 +15,8 @@ var app = {
             app.templates.eBooksTemplate = app.helper.compileSingleHbsTemplate('#e-books');
             app.templates.audiobooksTemplate = app.helper.compileSingleHbsTemplate('#audiobooks');
             app.templates.allBooksTemplate = app.helper.compileSingleHbsTemplate('#all-books');
+            app.templates.formsList = app.helper.compileSingleHbsTemplate('#forms');
+            app.templates.genresList = app.helper.compileSingleHbsTemplate('#genres');
         }
     },
     actions: {
@@ -60,7 +62,21 @@ var app = {
                     allBooks: response
                 }));
             });
-        }
+        },
+        displayFormsList: function() {
+            app.models.bookForms.getCollection().then(function(response) {
+                $('#container').html(app.templates.formsList({
+                    forms: response
+                }));
+            });
+        },
+        displayGenresList: function() {
+            app.models.bookGenres.getCollection().then(function(response) {
+                $('#container').html(app.templates.genresList({
+                    genres: response
+                }));
+            });
+        },
     },
     eventHandlers: {
         registerEventHandlers: function() {
@@ -71,6 +87,8 @@ var app = {
             $('.dropdown-menu').on('click', '#e-book-filter', app.actions.displayEbooks);
             $('.dropdown-menu').on('click', '#audiobook-filter', app.actions.displayAudiobooks);
             $('.dropdown-menu').on('click', '#all-books-filter', app.actions.displayAllBooks);
+            $('.dropdown-menu').on('click', '#form-filter', app.actions.displayFormsList);
+            $('.dropdown-menu').on('click', '#genre-filter', app.actions.displayGenresList);
         }
     },
     init: function() {

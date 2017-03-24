@@ -21,3 +21,15 @@ app.models.book = {
         //...
     }
 };
+
+app.models.bookForms = {
+    getCollection: function() {
+        return $.get(API_URL + '/bookForms');
+    }
+};
+
+app.models.bookGenres = {
+    getCollection: function() {
+        return $.get(API_URL + '/bookGenres');
+    }
+};
