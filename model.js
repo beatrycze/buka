@@ -1,9 +1,13 @@
 var API_URL = "http://localhost:3000";
 
 app.models.book = {
-    getCollection: function(bookTypeId) {
+    getCollection: function(bookTypeId, bookFormId, bookGenreId) { // argumenty funkcji są pozycyjne (kolejność ma znaczenie!)
         if(bookTypeId) {
             return $.get(API_URL + '/books', {bookTypeId: bookTypeId});
+        } else if(bookFormId) {
+            return $.get(API_URL + '/books', {bookFormId: bookFormId});
+        } else if(bookGenreId) {
+            return $.get(API_URL + '/books', {bookGenreId: bookGenreId});
         } else {
             return $.get(API_URL + '/books');
         }
