@@ -11,10 +11,9 @@ var app = {
             app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate("#home");
             app.templates.addBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-book");
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate("#wish-list");
-            app.templates.paperBooksTemplate = app.helper.compileSingleHbsTemplate('#paper-books');
-            app.templates.eBooksTemplate = app.helper.compileSingleHbsTemplate('#e-books');
-            app.templates.audiobooksTemplate = app.helper.compileSingleHbsTemplate('#audiobooks');
-            app.templates.allBooksTemplate = app.helper.compileSingleHbsTemplate('#all-books');
+
+            app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
+
             app.templates.formsList = app.helper.compileSingleHbsTemplate('#forms');
             app.templates.genresList = app.helper.compileSingleHbsTemplate('#genres');
         }
@@ -37,29 +36,29 @@ var app = {
         },
         displayPaperBooks: function() {
             app.models.book.getCollection(1).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
-                $('#container').html(app.templates.paperBooksTemplate({
-                    paperBooks: response
+                $('#container').html(app.templates.booksListTemplate({
+                    books: response
                 }));
             });
         },
         displayEbooks: function() {
             app.models.book.getCollection(2).then(function(response) {
-                $('#container').html(app.templates.eBooksTemplate({
-                    eBooks: response
+                $('#container').html(app.templates.booksListTemplate({
+                    books: response
                 }));
             });
         },
         displayAudiobooks: function() {
             app.models.book.getCollection(3).then(function(response) {
-                $('#container').html(app.templates.audiobooksTemplate({
-                    audiobooks: response
+                $('#container').html(app.templates.booksListTemplate({
+                    books: response
                 }));
             });
         },
         displayAllBooks: function() {
             app.models.book.getCollection().then(function(response) {
-                $('#container').html(app.templates.allBooksTemplate({
-                    allBooks: response
+                $('#container').html(app.templates.booksListTemplate({
+                    books: response
                 }));
             });
         },
