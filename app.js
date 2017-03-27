@@ -11,11 +11,9 @@ var app = {
             app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate("#home");
             app.templates.addBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-book");
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate("#wish-list");
-
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
-
-            app.templates.formsList = app.helper.compileSingleHbsTemplate('#forms');
-            app.templates.genresList = app.helper.compileSingleHbsTemplate('#genres');
+            app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
+            app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
         }
     },
     actions: {
@@ -64,14 +62,14 @@ var app = {
         },
         displayFormsList: function() {
             app.models.bookForms.getCollection().then(function(response) {
-                $('#container').html(app.templates.formsList({
+                $('#container').html(app.templates.formsListTemplate({
                     forms: response
                 }));
             });
         },
         displayGenresList: function() {
             app.models.bookGenres.getCollection().then(function(response) {
-                $('#container').html(app.templates.genresList({
+                $('#container').html(app.templates.genresListTemplate({
                     genres: response
                 }));
             });
