@@ -67,6 +67,7 @@ var app = {
         displayFormsList: function() {
             app.models.bookForms.getCollection().then(function(response) {
                 $('#container').html(app.templates.formsListTemplate({
+                    header: 'Forms:',
                     forms: response
                 }));
             });
@@ -74,6 +75,7 @@ var app = {
         displayGenresList: function() {
             app.models.bookGenres.getCollection().then(function(response) {
                 $('#container').html(app.templates.genresListTemplate({
+                    header: 'Genres:',
                     genres: response
                 }));
             });
