@@ -69,6 +69,9 @@
     </script>
 
     <script id="books-list" type="text/x-handlebars-template">
+        <p>
+            <h2>{{header}}</h2>
+        </p>
         <ol>
         {{#each books}}
             <li>
@@ -85,7 +88,7 @@
         <p></p>
         <ol>
         {{#each forms}}
-            <li><a class="book-form-link" data-book-form-id={{id}} href="#">{{type}}</a></li>
+            <li><a class="book-form-link" data-book-form-id={{id}} data-book-form-type={{type}} href="#">{{type}}</a></li>
         {{/each}}
         </ol>
     </script>
@@ -94,7 +97,7 @@
         <p></p>
         <ol>
         {{#each genres}}
-            <li><a class="book-genre-link" data-book-genre-id={{id}} href="#">{{type}}</a></li>
+            <li><a class="book-genre-link" data-book-genre-id={{id}} data-book-genre-type={{type}} href="#">{{type}}</a></li>
         {{/each}}
         </ol>
     </script>
