@@ -26,6 +26,12 @@ app.models.book = {
     }
 };
 
+app.models.bookTypes = {
+    getCollection: function() {
+        return $.get(API_URL + '/bookTypes');
+    }
+};
+
 app.models.bookForms = {
     getCollection: function() {
         return $.get(API_URL + '/bookForms');
