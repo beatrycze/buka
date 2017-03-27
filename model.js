@@ -32,14 +32,24 @@ app.models.bookTypes = {
     }
 };
 
+var cachedBookForms;
 app.models.bookForms = {
     getCollection: function() {
-        return $.get(API_URL + '/bookForms');
+        if(!cachedBookForms) { // warunek w if-e zawsze zrzuca się do true/false (uwaga na tzw. falsy values);
+            // jeśli false, to wykonywany jest else (o ile został określony)
+            cachedBookForms = $.get(API_URL + '/bookForms');
+        }
+        return cachedBookForms;
+        // żaden kod po return nie zostanie nigdy wykonany
     }
 };
 
+var cachedBookGenres;
 app.models.bookGenres = {
     getCollection: function() {
-        return $.get(API_URL + '/bookGenres');
+        if(!cachedBookGenres) {
+            cachedBookGenres = $.get(API_URL + '/bookGenres');
+        }
+        return cachedBookGenres;
     }
 };
