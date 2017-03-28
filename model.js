@@ -32,24 +32,29 @@ app.models.bookTypes = {
     }
 };
 
-var cachedBookForms;
-app.models.bookForms = {
-    getCollection: function() {
-        if(!cachedBookForms) { // warunek w if-e zawsze zrzuca się do true/false (uwaga na tzw. falsy values);
-            // jeśli false, to wykonywany jest else (o ile został określony)
-            cachedBookForms = $.get(API_URL + '/bookForms');
-        }
-        return cachedBookForms;
-        // żaden kod po return nie zostanie nigdy wykonany
-    }
-};
+(function(){ // IIFE czyli Immediately Invoked Function Expression
+    // wszystkie var-y wewn. tego IIFE NIE są dostępne na zewn. (istnieją, są używane - ale są ukryte, niedostępne = są PRYWATNE)
 
-var cachedBookGenres;
-app.models.bookGenres = {
-    getCollection: function() {
-        if(!cachedBookGenres) {
-            cachedBookGenres = $.get(API_URL + '/bookGenres');
+    var cachedBookForms;
+    app.models.bookForms = {
+        getCollection: function() {
+            if(!cachedBookForms) { // warunek w if-e zawsze zrzuca się do true/false (uwaga na tzw. falsy values);
+                // jeśli false, to wykonywany jest else (o ile został określony)
+                cachedBookForms = $.get(API_URL + '/bookForms');
+            }
+            return cachedBookForms;
+            // żaden kod po return nie zostanie nigdy wykonany
         }
-        return cachedBookGenres;
-    }
-};
+    };
+
+    var cachedBookGenres;
+    app.models.bookGenres = {
+        getCollection: function() {
+            if(!cachedBookGenres) {
+                cachedBookGenres = $.get(API_URL + '/bookGenres');
+            }
+            return cachedBookGenres;
+        }
+    };
+
+}());

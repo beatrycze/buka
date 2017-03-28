@@ -1,5 +1,4 @@
 var app = {
-    //...
     templates: {},
     models: {},
     helper: {
