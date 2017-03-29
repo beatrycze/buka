@@ -34,7 +34,7 @@ var app = {
         displayPaperBooks: function() {
             app.models.book.getCollection(1).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListTemplate({
-                    header: 'Paper books:',
+                    header: 'Paper books',
                     books: response
                 }));
             });
@@ -42,7 +42,7 @@ var app = {
         displayEbooks: function() {
             app.models.book.getCollection(2).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: 'E-books:',
+                    header: 'E-books',
                     books: response
                 }));
             });
@@ -50,7 +50,7 @@ var app = {
         displayAudiobooks: function() {
             app.models.book.getCollection(3).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: 'Audiobooks:',
+                    header: 'Audiobooks',
                     books: response
                 }));
             });
@@ -58,7 +58,7 @@ var app = {
         displayAllBooks: function() {
             app.models.book.getCollection().then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: 'All books:',
+                    header: 'All books',
                     books: response
                 }));
             });
@@ -84,7 +84,7 @@ var app = {
             var bookFormType = $(this).attr('data-book-form-type');
             app.models.book.getCollection(null, bookFormId, null).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: bookFormType.charAt(0).toUpperCase() + bookFormType.slice(1) + ':',
+                    header: bookFormType.charAt(0).toUpperCase() + bookFormType.slice(1),
                     books: response
                 }));
             });
@@ -94,7 +94,7 @@ var app = {
             var bookGenreType = $(this).attr('data-book-genre-type');
             app.models.book.getCollection(null, null, bookGenreId).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: bookGenreType.charAt(0).toUpperCase() + bookGenreType.slice(1) + ':',
+                    header: bookGenreType.charAt(0).toUpperCase() + bookGenreType.slice(1),
                     books: response
                 }));
             });
