@@ -84,7 +84,7 @@ var app = {
             var bookFormType = $(this).attr('data-book-form-type');
             app.models.book.getCollection(null, bookFormId, null).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: bookFormType.charAt(0).toUpperCase() + bookFormType.slice(1),
+                    header: capitalize(bookFormType),
                     books: response
                 }));
             });
@@ -94,7 +94,7 @@ var app = {
             var bookGenreType = $(this).attr('data-book-genre-type');
             app.models.book.getCollection(null, null, bookGenreId).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
-                    header: bookGenreType.charAt(0).toUpperCase() + bookGenreType.slice(1),
+                    header: capitalize(bookGenreType),
                     books: response
                 }));
             });
