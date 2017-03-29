@@ -99,6 +99,17 @@ var app = {
                 }));
             });
         },
+        deleteBook: function() {
+            var bookId = $(this).attr('data-book-id');
+            var bookToDelete = confirm("BUKA SAYS: This book will be deleted. Are you sure?");
+            if(bookToDelete) {
+                app.models.book.deleteItem(bookId).then(function() {
+                    alert("BUKA SAYS: The book number " + bookId + " was deleted.");
+                }).then(app.actions.displayHomepage);
+            } else {
+                    alert("BUKA SAYS: Ok, I will leave this book where it is.");
+            }
+        },
     },
     eventHandlers: {
         registerEventHandlers: function() {
@@ -113,6 +124,7 @@ var app = {
             $('.dropdown-menu').on('click', '#genre-filter', app.actions.displayGenresList);
             $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
+            $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
         }
     },
     init: function() {

@@ -21,8 +21,11 @@ app.models.book = {
     updateItem: function() {
         //...
     },
-    deleteItem: function() {
-        //...
+    deleteItem: function(id) {
+        return $.ajax({
+            url: API_URL + '/books/' + id,
+            type: 'DELETE'
+        })
     }
 };
 
