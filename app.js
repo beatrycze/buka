@@ -32,71 +32,88 @@ var app = {
             $('#container').html(wishListPageHtmlResult);
         },
         displayPaperBooks: function() {
+            addSpinner();
             app.models.book.getCollection(1).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'Paper books',
                     books: response
                 }));
+                removeSpinner();
             });
+
         },
         displayEbooks: function() {
+            addSpinner();
             app.models.book.getCollection(2).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'E-books',
                     books: response
                 }));
+                removeSpinner();
             });
         },
         displayAudiobooks: function() {
+            addSpinner();
             app.models.book.getCollection(3).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'Audiobooks',
                     books: response
                 }));
+                removeSpinner();
             });
         },
         displayAllBooks: function() {
+            addSpinner();
             app.models.book.getCollection().then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'All books',
                     books: response
                 }));
+                removeSpinner();
             });
         },
         displayFormsList: function() {
+            addSpinner();
             app.models.bookForms.getCollection().then(function(response) {
                 $('#container').html(app.templates.formsListTemplate({
                     header: 'Forms:',
                     forms: response
                 }));
+                removeSpinner();
             });
         },
         displayGenresList: function() {
+            addSpinner();
             app.models.bookGenres.getCollection().then(function(response) {
                 $('#container').html(app.templates.genresListTemplate({
                     header: 'Genres:',
                     genres: response
                 }));
+                removeSpinner();
             });
         },
         displayBooksFilteredByForm: function() {
             var bookFormId = $(this).attr('data-book-form-id');
             var bookFormType = $(this).attr('data-book-form-type');
+            addSpinner();
             app.models.book.getCollection(null, bookFormId, null).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookFormType),
                     books: response
                 }));
+                removeSpinner();
             });
         },
         displayBooksFilteredByGenre: function() {
             var bookGenreId = $(this).attr('data-book-genre-id');
             var bookGenreType = $(this).attr('data-book-genre-type');
+            addSpinner();
             app.models.book.getCollection(null, null, bookGenreId).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookGenreType),
                     books: response
                 }));
+                removeSpinner();
             });
         },
         deleteBook: function() {
