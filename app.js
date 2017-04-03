@@ -130,6 +130,7 @@ var app = {
     init: function() {
         app.helper.compileHbsTemplates();
         app.eventHandlers.registerEventHandlers();
+        app.actions.displayHomepage();
     }
 };
 
