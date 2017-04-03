@@ -95,7 +95,7 @@ var app = {
         displayBooksFilteredByForm: function() {
             var bookFormId = $(this).attr('data-book-form-id');
             var bookFormType = $(this).attr('data-book-form-type');
-            addSpinner();
+            addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection(null, bookFormId, null).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookFormType),
@@ -107,7 +107,7 @@ var app = {
         displayBooksFilteredByGenre: function() {
             var bookGenreId = $(this).attr('data-book-genre-id');
             var bookGenreType = $(this).attr('data-book-genre-type');
-            addSpinner();
+            addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection(null, null, bookGenreId).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookGenreType),
@@ -120,11 +120,16 @@ var app = {
             var bookId = $(this).attr('data-book-id');
             var bookToDelete = confirm("BUKA SAYS: This book will be deleted. Are you sure?");
             if(bookToDelete) {
+                addSpinner();
                 app.models.book.deleteItem(bookId).then(function() {
-                    alert("BUKA SAYS: The book number " + bookId + " was deleted.");
+                    removeSpinner();
+                    alert("BUKA SAYS: The book number " + bookId + " was deleted."); // przeglądarka nie robi "repaint"
+                    // (namalowanie HTML+CSS od nowa) po zdjęciu klasy "spinner"; rozbicie jednej promisy na dwie promisy
+                    // (najpierw zdjęcie css, potem wyświetlenie alertu) nie rozwiązuje problemu, dalej nie ma "repaint"
+                    // TODO force repaint here
                 }).then(app.actions.displayHomepage);
             } else {
-                    alert("BUKA SAYS: Ok, I will leave this book where it is.");
+                alert("BUKA SAYS: Ok, I will leave this book where it is.");
             }
         },
     },
