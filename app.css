@@ -1,29 +1,36 @@
 body {
   padding-top: 50px;
 }
+
 .starter-template {
   padding: 40px 15px;
   text-align: center;
 }
+
 .navbar-inverse {
   background-color: #5a4496;
   border-color: #011463;
 }
+
 .navbar-inverse .navbar-brand {
   color: #bbb7b7;
 }
+
 .navbar-inverse .navbar-text {
   color: #bbb7b7;
 }
+
 .navbar-inverse .navbar-nav > li > a {
   color: #bbb7b7;
 }
+
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #fff;
   background-color: #011463;
 }
+
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
     background-color: #101010;
@@ -32,26 +39,52 @@ body {
     color: #bbb7b7;
   }
 }
+
 .navbar-inverse .navbar-toggle {
   border-color: #101010;
 }
+
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
   background-color: #011463;
 }
+
 .dropdown-header {
   color: #8f8b8b;
 }
+
 .navbar-inverse .navbar-nav > .open > a,
 .navbar-inverse .navbar-nav > .open > a:hover,
 .navbar-inverse .navbar-nav > .open > a:focus {
   color: #fff;
   background-color: #011463;
 }
+
 /*.active {
   background-color: #011463;
 }*/
+
 .row-separator {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+ 
+.spinner {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90px;
+  height: 90px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border-top: 4px solid #8f8b8b;
+  border-right: 6px solid #5a4496;
+  animation: spinner .6s linear infinite;
 }
