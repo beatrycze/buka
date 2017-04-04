@@ -27,18 +27,14 @@ var app = {
             var bookGenresPromis = app.models.bookGenres.getCollection();
 
             Promise.all([bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
-                var bookTypes = responses[0];
-                var bookForms = responses[1];
-                var bookGenres = responses[2];
-
                 var addBookFormHtmlResult = app.templates.addBookFormTemplate({
                     title: 'Give BUKA more books!',
-                    types: bookTypes,
-                    forms: bookForms,
-                    genres: bookGenres
+                    types: responses[0],
+                    forms: responses[1],
+                    genres: responses[2]
                 });
                 $('#container').html(addBookFormHtmlResult);
-            })
+            });
             // app.models.bookForms.getCollection().then(function(response) {
             //     $('#container').html(app.templates.addBookFormTemplate({
             //         title: 'Give BUKA more books!',
