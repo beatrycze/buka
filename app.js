@@ -140,7 +140,7 @@ var app = {
             } else {
                 alert("BUKA SAYS: Ok, I will leave this book where it is.");
             }
-        },
+        }
     },
     eventHandlers: {
         registerEventHandlers: function() {
@@ -156,6 +156,7 @@ var app = {
             $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
+            $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
         }
     },
     init: function() {
