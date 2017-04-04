@@ -34,12 +34,6 @@ var app = {
                     genres: responses[2]
                 }));
             });
-            // app.models.bookForms.getCollection().then(function(response) {
-            //     $('#container').html(app.templates.addBookFormTemplate({
-            //         title: 'Give BUKA more books!',
-            //         forms: response
-            //     }));
-            // });
         },
         displayWishListPage: function() {
             var context = {title: "Here will be a list of books that I want to have."};
