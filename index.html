@@ -85,9 +85,9 @@
             <div class="col-sm-10">
             <select name="singleType" id="singleType" class="form-control">
                 <option value="">-- choose type --</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                {{#each types}}
+                <option value={{id}}>{{type}}</option>
+                {{/each}}
             </select>
             </div>
         </div>
@@ -96,9 +96,9 @@
             <div class="col-sm-10">
             <select name="singleForm" id="singleForm" class="form-control">
                 <option value="">-- choose form --</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+                {{#each forms}}
+                <option value={{id}}>{{type}}</option>
+                {{/each}}
             </select>
             </div>
         </div>
@@ -107,15 +107,9 @@
             <div class="col-sm-10">
             <select name="singleGenre" id="singleGenre" class="form-control">
                 <option value="">-- choose genre --</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
+                {{#each genres}}
+                <option value={{id}}>{{type}}</option>
+                {{/each}}
             </select>
             </div>
         </div>

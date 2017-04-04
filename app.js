@@ -22,9 +22,29 @@ var app = {
             $('#container').html(homepageHtmlResult);
         },
         displayAddBookForm: function() {
-            var context = {title: "Give BUKA more books!"};
-            var addBookFormHtmlResult = app.templates.addBookFormTemplate(context);
-            $('#container').html(addBookFormHtmlResult);
+            var bookTypesPromis = app.models.bookTypes.getCollection();
+            var bookFormsPromis = app.models.bookForms.getCollection();
+            var bookGenresPromis = app.models.bookGenres.getCollection();
+
+            Promise.all([bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
+                var bookTypes = responses[0];
+                var bookForms = responses[1];
+                var bookGenres = responses[2];
+
+                var addBookFormHtmlResult = app.templates.addBookFormTemplate({
+                    title: 'Give BUKA more books!',
+                    types: bookTypes,
+                    forms: bookForms,
+                    genres: bookGenres
+                });
+                $('#container').html(addBookFormHtmlResult);
+            })
+            // app.models.bookForms.getCollection().then(function(response) {
+            //     $('#container').html(app.templates.addBookFormTemplate({
+            //         title: 'Give BUKA more books!',
+            //         forms: response
+            //     }));
+            // });
         },
         displayWishListPage: function() {
             var context = {title: "Here will be a list of books that I want to have."};
