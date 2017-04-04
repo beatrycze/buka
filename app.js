@@ -22,7 +22,7 @@ var app = {
             $('#container').html(homepageHtmlResult);
         },
         displayAddBookForm: function() {
-            var context = {title: "Here will be a form for adding books."};
+            var context = {title: "Give BUKA more books!"};
             var addBookFormHtmlResult = app.templates.addBookFormTemplate(context);
             $('#container').html(addBookFormHtmlResult);
         },

@@ -69,6 +69,10 @@ body {
   margin-bottom: 10px;
 }
 
+.spacer {
+  padding-bottom: 15px;
+}
+
 @keyframes spinner {
   to {transform: rotate(360deg);}
 }
