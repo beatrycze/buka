@@ -140,6 +140,23 @@ var app = {
             } else {
                 alert("BUKA SAYS: Ok, I will leave this book where it is.");
             }
+        },
+        addBook: function() {
+            var book = {
+                title: $("#inputBookTitle").val(),
+                author: $("#inputBookAuthor").val(),
+                description: $("#inputBookDescription").val(),
+                bookTypeId: $("#singleType").val(),
+                bookFormId: $("#singleForm").val(),
+                bookGenreId: $("#singleGenre").val(),
+                borrowed: $("#borrowedCheckbox").is(":checked") // zwraca true or false
+            };
+
+            addSpinner();
+            app.models.book.createItem(book).then(function() {
+                removeSpinner();
+                alert("BUKA SAYS: New book has been added, oh yeah!");
+            }).then(app.actions.displayAddBookForm);
         }
     },
     eventHandlers: {
@@ -156,6 +173,7 @@ var app = {
             $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
+            $('#container').on('click', '#add-book-btn', app.actions.addBook);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
         }
     },

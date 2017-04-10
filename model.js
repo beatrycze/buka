@@ -15,8 +15,8 @@ app.models.book = {
     getItem: function() {
         //...
     },
-    createItem: function() {
-        //...
+    createItem: function(itemData) {
+        return $.post(API_URL + '/books', itemData);
     },
     updateItem: function() {
         //...
