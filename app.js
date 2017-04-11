@@ -9,6 +9,7 @@ var app = {
         compileHbsTemplates: function() {
             app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate("#home");
             app.templates.addBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-book");
+            app.templates.editBookFormTemplate = app.helper.compileSingleHbsTemplate("#edit-book");
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate("#wish-list");
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
@@ -32,6 +33,23 @@ var app = {
                     types: responses[0],
                     forms: responses[1],
                     genres: responses[2]
+                }));
+            });
+        },
+        displayEditBookForm: function() {
+            var bookId = $(this).attr('data-book-id');
+            var bookPromis = app.models.book.getItem(bookId);
+            var bookTypesPromis = app.models.bookTypes.getCollection();
+            var bookFormsPromis = app.models.bookForms.getCollection();
+            var bookGenresPromis = app.models.bookGenres.getCollection();
+
+            Promise.all([bookPromis, bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
+                $('#container').html(app.templates.editBookFormTemplate({
+                    title: 'Something changed? Update it!',
+                    book: responses[0],
+                    types: responses[1],
+                    forms: responses[2],
+                    genres: responses[3]
                 }));
             });
         },
@@ -174,6 +192,7 @@ var app = {
             $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
+            $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
         }
     },

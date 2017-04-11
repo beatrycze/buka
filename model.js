@@ -12,8 +12,8 @@ app.models.book = {
             return $.get(API_URL + '/books');
         }
     },
-    getItem: function() {
-        //...
+    getItem: function(id) {
+        return $.get(API_URL + '/books/' + id);
     },
     createItem: function(itemData) {
         return $.post(API_URL + '/books', itemData);

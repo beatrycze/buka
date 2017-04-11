@@ -131,6 +131,81 @@
         </form>
     </script>
 
+    <script id="edit-book" type="text/x-handlebars-template">
+        <div class="spacer">
+            <h2>{{title}}</h2>
+        </div>
+        <form class="form-horizontal">
+            <input type="hidden" class="form-control" id="inputBookId" value="{{book.id}}">
+        <div class="form-group">
+            <label for="inputBookTitle" class="col-sm-2 control-label">Title</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputBookTitle" placeholder="Title" value="{{book.title}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputBookAuthor" class="col-sm-2 control-label">Author</label>
+            <div class="col-sm-10">
+            <input type="text" class="form-control" id="inputBookAuthor" placeholder="Author" value="{{book.author}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputBookDescription" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+            <textarea class="form-control" rows="3" id="inputBookDescription" placeholder="Description">{{book.description}}</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="singleType" class="col-sm-2 control-label">Type</label>
+            <div class="col-sm-10">
+            <select name="singleType" id="singleType" class="form-control">
+                <option value="">-- choose type --</option>
+                {{#each types}}
+                <option value={{id}}>{{type}}</option>
+                {{/each}}
+            </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="singleForm" class="col-sm-2 control-label">Form</label>
+            <div class="col-sm-10">
+            <select name="singleForm" id="singleForm" class="form-control">
+                <option value="">-- choose form --</option>
+                {{#each forms}}
+                <option value={{id}}>{{type}}</option>
+                {{/each}}
+            </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="singleGenre" class="col-sm-2 control-label">Genre</label>
+            <div class="col-sm-10">
+            <select name="singleGenre" id="singleGenre" class="form-control">
+                <option value="">-- choose genre --</option>
+                {{#each genres}}
+                <option value={{id}}>{{type}}</option>
+                {{/each}}
+            </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                <input type="checkbox" id="borrowedCheckbox"> Is borrowed?
+                </label>
+            </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" id="save-changes-btn" class="btn btn-success">Save</button>
+            <button id="cancel-btn-link" type="button" class="btn btn-link">Cancel</button>
+            </div>
+        </div>
+        </form>
+    </script>
+
     <script id="wish-list" type="text/x-handlebars-template">
         <div>
             <h2>{{title}}</h2>
