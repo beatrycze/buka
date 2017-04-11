@@ -47,9 +47,9 @@ var app = {
                 $('#container').html(app.templates.editBookFormTemplate({
                     title: 'Something changed? Update it!',
                     book: responses[0],
-                    types: responses[1],
-                    forms: responses[2],
-                    genres: responses[3]
+                    bookTypes: responses[1],
+                    bookForms: responses[2],
+                    bookGenres: responses[3]
                 }));
             });
         },
@@ -205,4 +205,13 @@ var app = {
 
 $(document).ready(function() {
     app.init();
+});
+
+// http://stackoverflow.com/a/20891435
+Handlebars.registerHelper('selected', function(option, value){
+    if (option === value) {
+        return ' selected';
+    } else {
+        return ''
+    }
 });
