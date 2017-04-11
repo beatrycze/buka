@@ -192,7 +192,10 @@
             <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
-                <input type="checkbox" id="borrowedCheckbox"> Is borrowed?
+                <input type="checkbox" id="borrowedCheckbox" {{#if book.borrowed}}checked{{/if}}> Is borrowed?
+                <!-- Handlebars if helper:
+                http://stackoverflow.com/questions/16797095/handlebars-conditional-checked-property-from-jade-template
+                book.borrowed - wskazuje na odpowiedni klucz obiektu book, kt wartość jest sprawdzana -->
                 </label>
             </div>
             </div>
