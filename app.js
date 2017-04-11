@@ -30,9 +30,9 @@ var app = {
             Promise.all([bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
                 $('#container').html(app.templates.addBookFormTemplate({
                     title: 'Give BUKA more books!',
-                    types: responses[0],
-                    forms: responses[1],
-                    genres: responses[2]
+                    bookTypes: responses[0],
+                    bookForms: responses[1],
+                    bookGenres: responses[2]
                 }));
             });
         },
