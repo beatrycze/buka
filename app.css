@@ -92,3 +92,27 @@ body {
   border-right: 6px solid #5a4496;
   animation: spinner .6s linear infinite;
 }
+
+.btn-default-delete {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+
+.btn-default-delete:hover {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btn-default-edit {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.btn-default-edit:hover {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
