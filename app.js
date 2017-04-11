@@ -27,7 +27,9 @@ var app = {
             var bookFormsPromis = app.models.bookForms.getCollection();
             var bookGenresPromis = app.models.bookGenres.getCollection();
 
+            addSpinner();
             Promise.all([bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
+                removeSpinner();
                 $('#container').html(app.templates.addBookFormTemplate({
                     title: 'Give BUKA more books!',
                     bookTypes: responses[0],
@@ -43,7 +45,9 @@ var app = {
             var bookFormsPromis = app.models.bookForms.getCollection();
             var bookGenresPromis = app.models.bookGenres.getCollection();
 
+            addSpinner();
             Promise.all([bookPromis, bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
+                removeSpinner();
                 $('#container').html(app.templates.editBookFormTemplate({
                     title: 'Something changed? Update it!',
                     book: responses[0],
