@@ -18,8 +18,12 @@ app.models.book = {
     createItem: function(itemData) {
         return $.post(API_URL + '/books', itemData);
     },
-    updateItem: function() {
-        //...
+    updateItem: function(id, itemData) {
+        return $.ajax({
+            url: API_URL + '/books/' + id,
+            type: 'PUT',
+            data: itemData
+        });
     },
     deleteItem: function(id) {
         return $.ajax({
