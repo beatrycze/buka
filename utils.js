@@ -11,11 +11,6 @@ function removeSpinner() {
     $('#container').removeClass('spinner');
 }
 
-// function highlightMenuTab(menuTab) {
-//     $('#main-menu li').removeClass('active');
-//     $(menuTab).parent().addClass('active');
-// }
-
 function highlightMenuTab(name) {
     app.selectors.menuTabAll.removeClass('active');
     app.selectors[name].addClass('active'); // odwołanie po . to wejście w konkretny atrybut (klucz o danej nazwie, po .)
