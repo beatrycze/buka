@@ -33,13 +33,13 @@ var app = {
             $('#container').html(homepageHtmlResult);
         },
         displayAddBookForm: function() {
-            var bookTypesPromis = app.models.bookTypes.getCollection();
-            var bookFormsPromis = app.models.bookForms.getCollection();
-            var bookGenresPromis = app.models.bookGenres.getCollection();
+            var bookTypesPromise = app.models.bookTypes.getCollection();
+            var bookFormsPromise = app.models.bookForms.getCollection();
+            var bookGenresPromise = app.models.bookGenres.getCollection();
 
             highlightMenuTab('menuTabAddBook');
             addSpinner();
-            Promise.all([bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
+            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
                 removeSpinner();
                 $('#container').html(app.templates.addBookFormTemplate({
                     title: 'Give BUKA more books!',
@@ -51,13 +51,13 @@ var app = {
         },
         displayEditBookForm: function() {
             var bookId = $(this).attr('data-book-id');
-            var bookPromis = app.models.book.getItem(bookId);
-            var bookTypesPromis = app.models.bookTypes.getCollection();
+            var bookPromise = app.models.book.getItem(bookId);
+            var bookTypesPromisee = app.models.bookTypes.getCollection();
             var bookFormsPromis = app.models.bookForms.getCollection();
-            var bookGenresPromis = app.models.bookGenres.getCollection();
+            var bookGenresPromise = app.models.bookGenres.getCollection();
 
             addSpinner();
-            Promise.all([bookPromis, bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
+            Promise.all([bookPromise, bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
                 removeSpinner();
                 $('#container').html(app.templates.editBookFormTemplate({
                     title: 'Something changed? Update it!',
