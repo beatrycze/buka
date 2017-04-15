@@ -60,9 +60,9 @@ body {
   background-color: #011463;
 }
 
-/*.active {
+.active {
   background-color: #011463;
-}*/
+}
 
 .row-separator {
   margin-top: 10px;

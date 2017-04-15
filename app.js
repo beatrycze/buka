@@ -1,6 +1,6 @@
 var app = {
-    templates: {},
-    models: {},
+    templates: {}, // obiekt zostanie utworzony PO document ready
+    models: {}, // z osobnego pliku
     helper: {
         compileSingleHbsTemplate: function(selector) {
             var source = $(selector).html();
@@ -14,12 +14,22 @@ var app = {
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
             app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
+        },
+        createUiSelectors: function() {
+            app.selectors = {
+                menuTabBookList: $('#my-library'),
+                menuTabAddBook: $('#add-book-form'),
+                menuTabWishList: $('#wish-list-page'),
+                menuTabAll: $('#main-menu li')
+            }
         }
     },
+    selectors: {}, // obiekt zostanie utworzony PO document ready
     actions: {
         displayHomepage: function() {
             var context = {title: "Hello, book lovers!", subtitle: "Work in progress..."};
             var homepageHtmlResult = app.templates.homepageTemplate(context);
+            unhighlightMenuTab();
             $('#container').html(homepageHtmlResult);
         },
         displayAddBookForm: function() {
@@ -27,6 +37,7 @@ var app = {
             var bookFormsPromis = app.models.bookForms.getCollection();
             var bookGenresPromis = app.models.bookGenres.getCollection();
 
+            highlightMenuTab('menuTabAddBook');
             addSpinner();
             Promise.all([bookTypesPromis, bookFormsPromis, bookGenresPromis]).then(function(responses) {
                 removeSpinner();
@@ -58,11 +69,13 @@ var app = {
             });
         },
         displayWishListPage: function() {
+            highlightMenuTab('menuTabWishList');
             var context = {title: "Here will be a list of books that I want to have."};
             var wishListPageHtmlResult = app.templates.wishListPageTemplate(context);
             $('#container').html(wishListPageHtmlResult);
         },
         displayPaperBooks: function() {
+            highlightMenuTab('menuTabBookList');
             addSpinner();
             app.models.book.getCollection(1).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListTemplate({
@@ -74,6 +87,7 @@ var app = {
 
         },
         displayEbooks: function() {
+            highlightMenuTab('menuTabBookList');
             addSpinner();
             app.models.book.getCollection(2).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
@@ -84,6 +98,7 @@ var app = {
             });
         },
         displayAudiobooks: function() {
+            highlightMenuTab('menuTabBookList');
             addSpinner();
             app.models.book.getCollection(3).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
@@ -94,6 +109,7 @@ var app = {
             });
         },
         displayAllBooks: function() {
+            highlightMenuTab('menuTabBookList');
             addSpinner();
             app.models.book.getCollection().then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
@@ -104,6 +120,7 @@ var app = {
             });
         },
         displayFormsList: function() {
+            highlightMenuTab('menuTabBookList');
             addSpinner();
             app.models.bookForms.getCollection().then(function(response) {
                 $('#container').html(app.templates.formsListTemplate({
@@ -114,6 +131,7 @@ var app = {
             });
         },
         displayGenresList: function() {
+            highlightMenuTab('menuTabBookList');
             addSpinner();
             app.models.bookGenres.getCollection().then(function(response) {
                 $('#container').html(app.templates.genresListTemplate({
@@ -126,6 +144,7 @@ var app = {
         displayBooksFilteredByForm: function() {
             var bookFormId = $(this).attr('data-book-form-id');
             var bookFormType = $(this).attr('data-book-form-type');
+            highlightMenuTab('menuTabBookList');
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection(null, bookFormId, null).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
@@ -138,6 +157,7 @@ var app = {
         displayBooksFilteredByGenre: function() {
             var bookGenreId = $(this).attr('data-book-genre-id');
             var bookGenreType = $(this).attr('data-book-genre-type');
+            highlightMenuTab('menuTabBookList');
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection(null, null, bookGenreId).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
@@ -158,7 +178,7 @@ var app = {
                     // (namalowanie HTML+CSS od nowa) po zdjęciu klasy "spinner"; rozbicie jednej promisy na dwie promisy
                     // (najpierw zdjęcie css, potem wyświetlenie alertu) nie rozwiązuje problemu, dalej nie ma "repaint"
                     // TODO force repaint here
-                }).then(app.actions.displayHomepage);
+                }).then(app.actions.displayAllBooks);
             } else {
                 alert("BUKA SAYS: Ok, I will leave this book where it is.");
             }
@@ -219,9 +239,11 @@ var app = {
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
         }
     },
+    // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
     init: function() {
         app.helper.compileHbsTemplates();
         app.eventHandlers.registerEventHandlers();
+        app.helper.createUiSelectors();
         app.actions.displayHomepage();
     }
 };
