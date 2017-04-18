@@ -260,3 +260,10 @@ Handlebars.registerHelper('selected', function(option, value){
         return ''
     }
 });
+
+// https://code-maven.com/handlebars-conditionals
+Handlebars.registerHelper('if_eq', function(a, b, opts) {
+    if (a == b) {
+        return opts.fn(this);
+    }
+});
