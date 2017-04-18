@@ -52,8 +52,8 @@ var app = {
         displayEditBookForm: function() {
             var bookId = $(this).attr('data-book-id');
             var bookPromise = app.models.book.getItem(bookId);
-            var bookTypesPromisee = app.models.bookTypes.getCollection();
-            var bookFormsPromis = app.models.bookForms.getCollection();
+            var bookTypesPromise = app.models.bookTypes.getCollection();
+            var bookFormsPromise = app.models.bookForms.getCollection();
             var bookGenresPromise = app.models.bookGenres.getCollection();
 
             addSpinner();
