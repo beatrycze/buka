@@ -8,8 +8,7 @@ var app = {
         },
         compileHbsTemplates: function() {
             app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate("#home");
-            app.templates.addBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-book");
-            app.templates.editBookFormTemplate = app.helper.compileSingleHbsTemplate("#edit-book");
+            app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-edit-book");
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate("#wish-list");
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
@@ -41,7 +40,7 @@ var app = {
             addSpinner();
             Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
                 removeSpinner();
-                $('#container').html(app.templates.addBookFormTemplate({
+                $('#container').html(app.templates.addAndEditBookFormTemplate({
                     title: 'Give BUKA more books!',
                     displayBorrowedCheckbox: false,
                     bookTypes: responses[0],
@@ -60,7 +59,7 @@ var app = {
             addSpinner();
             Promise.all([bookPromise, bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
                 removeSpinner();
-                $('#container').html(app.templates.editBookFormTemplate({
+                $('#container').html(app.templates.addAndEditBookFormTemplate({
                     title: 'Something changed? Update it!',
                     displayBorrowedCheckbox: responses[0].bookTypeId === 1,
                     book: responses[0],
@@ -86,7 +85,6 @@ var app = {
                 }));
                 removeSpinner();
             });
-
         },
         displayEbooks: function() {
             highlightMenuTab('menuTabBookList');
@@ -225,6 +223,8 @@ var app = {
                 $('#display-borrowed-checkbox').show(600);
             } else {
                 $('#display-borrowed-checkbox').hide(600);
+                $('#borrowedCheckbox').prop("checked", false); // zapobiega zaznaczeniu checkboxa w przypadku zmiany typu
+                // na paper book, a potem przywróceniu typu audioboook lub e-book
             }
         }
     },
