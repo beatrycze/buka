@@ -219,6 +219,13 @@ var app = {
                 removeSpinner();
                 alert("BUKA SAYS: This book has been updated, oh yeah!");
             }).then(app.actions.displayAllBooks);
+        },
+        displayBorrowedCheckbox: function() {
+            if (parseInt($(this).val()) === 1) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number
+                $('#display-borrowed-checkbox').show(600);
+            } else {
+                $('#display-borrowed-checkbox').hide(600);
+            }
         }
     },
     eventHandlers: {
@@ -239,13 +246,7 @@ var app = {
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
             $('#container').on('click', '#save-changes-btn', app.actions.updateBook);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
-            $('#container').on('change', '#singleType', function() {
-                if (parseInt($(this).val()) === 1) {
-                    $('#display-borrowed-checkbox').show(600);
-                } else {
-                    $('#display-borrowed-checkbox').hide(600);
-                }
-            });
+            $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
         }
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
