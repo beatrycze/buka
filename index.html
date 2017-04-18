@@ -113,8 +113,7 @@
             </select>
             </div>
         </div>
-        {{#if displayBorrowedCheckbox}}
-        <div id="display-borrowed-checkbox" class="form-group">
+        <div id="display-borrowed-checkbox" class="form-group" {{#unless displayBorrowedCheckbox}}style="display: none"{{/unless}}>
             <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
                 <label>
@@ -123,7 +122,6 @@
             </div>
             </div>
         </div>
-        {{/if}}
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" id="add-book-btn" class="btn btn-success">Add</button>

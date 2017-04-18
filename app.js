@@ -43,7 +43,7 @@ var app = {
                 removeSpinner();
                 $('#container').html(app.templates.addBookFormTemplate({
                     title: 'Give BUKA more books!',
-                    displayBorrowedCheckbox: true,
+                    displayBorrowedCheckbox: false,
                     bookTypes: responses[0],
                     bookForms: responses[1],
                     bookGenres: responses[2]
