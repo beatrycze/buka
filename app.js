@@ -233,12 +233,12 @@ var app = {
             $('#home-page').on('click', app.actions.displayHomepage);
             $('#add-book-form').on('click', app.actions.displayAddBookForm);
             $('#wish-list-page').on('click', app.actions.displayWishListPage);
-            $('.dropdown-menu').on('click', '#paper-book-filter', app.actions.displayPaperBooks);
-            $('.dropdown-menu').on('click', '#e-book-filter', app.actions.displayEbooks);
-            $('.dropdown-menu').on('click', '#audiobook-filter', app.actions.displayAudiobooks);
-            $('.dropdown-menu').on('click', '#all-books-filter', app.actions.displayAllBooks);
-            $('.dropdown-menu').on('click', '#form-filter', app.actions.displayFormsList);
-            $('.dropdown-menu').on('click', '#genre-filter', app.actions.displayGenresList);
+            $('#paper-book-filter').on('click', app.actions.displayPaperBooks);
+            $('#e-book-filter').on('click', app.actions.displayEbooks);
+            $('#audiobook-filter').on('click', app.actions.displayAudiobooks);
+            $('#all-books-filter').on('click', app.actions.displayAllBooks);
+            $('#form-filter').on('click', app.actions.displayFormsList);
+            $('#genre-filter').on('click', app.actions.displayGenresList);
             $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
