@@ -43,6 +43,7 @@ var app = {
                 removeSpinner();
                 $('#container').html(app.templates.addBookFormTemplate({
                     title: 'Give BUKA more books!',
+                    displayBorrowedCheckbox: true,
                     bookTypes: responses[0],
                     bookForms: responses[1],
                     bookGenres: responses[2]
@@ -238,6 +239,13 @@ var app = {
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
             $('#container').on('click', '#save-changes-btn', app.actions.updateBook);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
+            $('#container').on('change', '#singleType', function() {
+                if (parseInt($(this).val()) === 1) {
+                    $('#display-borrowed-checkbox').show(600);
+                } else {
+                    $('#display-borrowed-checkbox').hide(600);
+                }
+            });
         }
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
