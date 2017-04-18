@@ -188,9 +188,7 @@
             </select>
             </div>
         </div>
-        {{#if_eq book.bookTypeId 1}}
-        <!--Handlebars if_eq helper:
-        https://code-maven.com/handlebars-conditionals-->
+        {{#if displayBorrowedCheckbox}}
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
             <div class="checkbox">
@@ -203,7 +201,7 @@
             </div>
             </div>
         </div>
-        {{/if_eq}}
+        {{/if}}
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
             <button type="submit" id="save-changes-btn" class="btn btn-success">Save</button>

@@ -61,6 +61,7 @@ var app = {
                 removeSpinner();
                 $('#container').html(app.templates.editBookFormTemplate({
                     title: 'Something changed? Update it!',
+                    displayBorrowedCheckbox: responses[0].bookTypeId === 1,
                     book: responses[0],
                     bookTypes: responses[1],
                     bookForms: responses[2],
@@ -258,12 +259,5 @@ Handlebars.registerHelper('selected', function(option, value){
         return ' selected';
     } else {
         return ''
-    }
-});
-
-// https://code-maven.com/handlebars-conditionals
-Handlebars.registerHelper('if_eq', function(a, b, opts) {
-    if (a == b) {
-        return opts.fn(this);
     }
 });
