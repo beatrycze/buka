@@ -73,9 +73,21 @@ var app = {
         },
         displayFilterBooksPage: function() {
             highlightMenuTab('menuTabFilterBooks');
-            var context = {title: "Use these filters to find the books you are looking for."};
-            var filterBooksPageHtmlResult = app.templates.filterBooksPageTemplate(context);
-            $('#container').html(filterBooksPageHtmlResult);
+            addSpinner();
+
+            var bookTypesPromise = app.models.bookTypes.getCollection();
+            var bookFormsPromise = app.models.bookForms.getCollection();
+            var bookGenresPromise = app.models.bookGenres.getCollection();
+
+            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
+                $('#container').html(app.templates.filterBooksPageTemplate({
+                    title: 'Use these filters to find the books you are looking for.',
+                    types: responses[0],
+                    forms: responses[1],
+                    genres: responses[2]
+                }));
+                removeSpinner();
+            });
         },
         displayWishListPage: function() {
             highlightMenuTab('menuTabWishList');

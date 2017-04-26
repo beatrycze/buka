@@ -146,61 +146,34 @@
         </div>
         <div>
             <label class="block text-uppercase">Book types</label>
+            {{#each types}}
             <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxPaperBook" value="option1"> paper book
+                <input type="checkbox" id="inlineCheckboxBookType{{id}}" data-book-type-id={{id}} data-book-type-type={{type}}> {{type}}
             </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxEbook" value="option2"> e-book
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxAudiobook" value="option3"> audiobook
-            </label>
+            {{/each}}
         </div>
         <hr>
         <div>
             <label class="block text-uppercase">Book forms</label>
+            {{#each forms}}
             <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxPoetry" value="option1"> poetry
+                <input type="checkbox" id="inlineCheckboxBookForm{{id}}" data-book-form-id={{id}} data-book-form-type={{type}}> {{type}}
             </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxProse" value="option2"> prose
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxDrama" value="option3"> drama
-            </label>
+            {{/each}}
         </div>
         <hr>
         <div>
             <label class="block text-uppercase">Book genres</label>
+            {{#each genres}}
             <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxNovel" value="option1"> novel
+                <input type="checkbox" id="inlineCheckboxBookGenre{{id}}" data-book-genre-id={{id}} data-book-genre-type={{type}}> {{type}}
             </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxReportage" value="option2"> reportage
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxBbiography" value="option3"> biography
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxInterview" value="option1"> interview
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxEssay" value="option2"> essay
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxAutobiography" value="option3"> autobiography
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxLetters" value="option1"> letters
-            </label>
-            <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxFeuilleton" value="option2"> feuilleton
-            </label>
+            {{/each}}
         </div>
         <hr>
         <div>
             <label class="checkbox-inline">
-                <input type="checkbox" id="inlineCheckboxIsBorrowed" value="option1"> Is borrowed?
+                <input type="checkbox" id="inlineCheckboxIsBorrowed"> Is borrowed?
             </label>
         </div>
         <div class="row-separator-top">
