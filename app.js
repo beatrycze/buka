@@ -238,6 +238,42 @@ var app = {
                 alert("BUKA SAYS: This book has been updated, oh yeah!");
             }).then(app.actions.displayAllBooks);
         },
+        searchBooks: function() {
+            var bookTypesFilter = [];
+            for(var i = 1; i <= 3; i++) {
+                if ($("#inlineCheckboxBookType" + i).is(':checked')) {
+                    bookTypesFilter.push(i);
+                }
+            }
+
+            var bookFormsFilter = [];
+            for(var i = 1; i <= 3; i++) {
+                if ($("#inlineCheckboxBookForm" + i).is(':checked')) {
+                    bookFormsFilter.push(i);
+                }
+            }
+
+            var bookGenresFilter = [];
+            for(var i = 1; i <= 9; i++) {
+                if ($("#inlineCheckboxBookGenre" + i).is(':checked')) {
+                    bookGenresFilter.push(i);
+                }
+            }
+
+            // var bookIsBorrowed = [];
+            // if ($("#inlineCheckboxIsBorrowed").is(':checked')) {
+            //     bookIsBorrowed.push(true);
+            // }
+
+            var book = {
+                borrowed: $("#inlineCheckboxIsBorrowed").is(":checked") // zwraca true or false
+            };
+            console.log(bookTypesFilter);
+            console.log(bookFormsFilter);
+            console.log(bookGenresFilter);
+            // console.log(bookIsBorrowed);
+            console.log(book);
+        },
         displayBorrowedCheckbox: function() {
             if (parseInt($(this).val()) === 1) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number
                 $('#display-borrowed-checkbox').show(600);
@@ -266,6 +302,7 @@ var app = {
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
             $('#container').on('click', '#save-changes-btn', app.actions.updateBook);
+            $('#container').on('click', '#search-books-btn', app.actions.searchBooks);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
         }
