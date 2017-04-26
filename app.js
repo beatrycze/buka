@@ -9,6 +9,7 @@ var app = {
         compileHbsTemplates: function() {
             app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate("#home");
             app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-edit-book");
+            app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate("#filter-books");
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate("#wish-list");
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
@@ -18,6 +19,7 @@ var app = {
             app.selectors = {
                 menuTabBookList: $('#my-library'),
                 menuTabAddBook: $('#add-book-form'),
+                menuTabFilterBooks: $('#filter-books-page'),
                 menuTabWishList: $('#wish-list-page'),
                 menuTabAll: $('#main-menu li')
             }
@@ -68,6 +70,12 @@ var app = {
                     bookGenres: responses[3]
                 }));
             });
+        },
+        displayFilterBooksPage: function() {
+            highlightMenuTab('menuTabFilterBooks');
+            var context = {title: "Use these filters to find the books you are looking for."};
+            var filterBooksPageHtmlResult = app.templates.filterBooksPageTemplate(context);
+            $('#container').html(filterBooksPageHtmlResult);
         },
         displayWishListPage: function() {
             highlightMenuTab('menuTabWishList');
@@ -233,6 +241,7 @@ var app = {
             $('#home-page').on('click', app.actions.displayHomepage);
             $('#add-book-form').on('click', app.actions.displayAddBookForm);
             $('#wish-list-page').on('click', app.actions.displayWishListPage);
+            $('#filter-books-page').on('click', app.actions.displayFilterBooksPage);
             $('#paper-book-filter').on('click', app.actions.displayPaperBooks);
             $('#e-book-filter').on('click', app.actions.displayEbooks);
             $('#audiobook-filter').on('click', app.actions.displayAudiobooks);

@@ -38,6 +38,7 @@
                         </ul>
                         </li>
                     <li id="add-book-form"><a href="#add-book">Add book</a></li>
+                    <li id="filter-books-page"><a href="#filter-books">Filter books</a></li>
                     <li id="wish-list-page"><a href="#wish-list">Wish list</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -137,6 +138,74 @@
             </div>
         </div>
         </form>
+    </script>
+
+    <script id="filter-books" type="text/x-handlebars-template">
+        <div class="spacer">
+            <h2>{{title}}</h2>
+        </div>
+        <div>
+            <label class="block text-uppercase">Book types</label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxPaperBook" value="option1"> paper book
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxEbook" value="option2"> e-book
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxAudiobook" value="option3"> audiobook
+            </label>
+        </div>
+        <hr>
+        <div>
+            <label class="block text-uppercase">Book forms</label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxPoetry" value="option1"> poetry
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxProse" value="option2"> prose
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxDrama" value="option3"> drama
+            </label>
+        </div>
+        <hr>
+        <div>
+            <label class="block text-uppercase">Book genres</label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxNovel" value="option1"> novel
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxReportage" value="option2"> reportage
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxBbiography" value="option3"> biography
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxInterview" value="option1"> interview
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxEssay" value="option2"> essay
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxAutobiography" value="option3"> autobiography
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxLetters" value="option1"> letters
+            </label>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxFeuilleton" value="option2"> feuilleton
+            </label>
+        </div>
+        <hr>
+        <div>
+            <label class="checkbox-inline">
+                <input type="checkbox" id="inlineCheckboxIsBorrowed" value="option1"> Is borrowed?
+            </label>
+        </div>
+        <div class="row-separator-top">
+            <button type="button" class="btn btn-primary">Search</button>
+        </div>
     </script>
 
     <script id="wish-list" type="text/x-handlebars-template">
