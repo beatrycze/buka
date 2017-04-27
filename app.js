@@ -239,40 +239,31 @@ var app = {
             }).then(app.actions.displayAllBooks);
         },
         searchBooks: function() {
-            var bookTypesFilter = [];
-            for(var i = 1; i <= 3; i++) {
+            var searchBooksFilters = {};
+            searchBooksFilters.bookTypeIds = [];
+            searchBooksFilters.bookFormIds = [];
+            searchBooksFilters.bookGenreIds = [];
+            searchBooksFilters.borrowed = $("#inlineCheckboxIsBorrowed").is(":checked") // zwraca true or false
+
+            for(var i = 1; i <= $('input.checkbox-book-type').length; i++) {
                 if ($("#inlineCheckboxBookType" + i).is(':checked')) {
-                    bookTypesFilter.push(i);
+                    searchBooksFilters.bookTypeIds.push(i);
                 }
             }
 
-            var bookFormsFilter = [];
-            for(var i = 1; i <= 3; i++) {
+            for(var i = 1; i <= $('input.checkbox-book-form').length; i++) {
                 if ($("#inlineCheckboxBookForm" + i).is(':checked')) {
-                    bookFormsFilter.push(i);
+                    searchBooksFilters.bookFormIds.push(i);
                 }
             }
 
-            var bookGenresFilter = [];
-            for(var i = 1; i <= 9; i++) {
+            for(var i = 1; i <= $('input.checkbox-book-genre').length; i++) {
                 if ($("#inlineCheckboxBookGenre" + i).is(':checked')) {
-                    bookGenresFilter.push(i);
+                    searchBooksFilters.bookGenreIds.push(i);
                 }
             }
 
-            // var bookIsBorrowed = [];
-            // if ($("#inlineCheckboxIsBorrowed").is(':checked')) {
-            //     bookIsBorrowed.push(true);
-            // }
-
-            var book = {
-                borrowed: $("#inlineCheckboxIsBorrowed").is(":checked") // zwraca true or false
-            };
-            console.log(bookTypesFilter);
-            console.log(bookFormsFilter);
-            console.log(bookGenresFilter);
-            // console.log(bookIsBorrowed);
-            console.log(book);
+            console.log(searchBooksFilters);
         },
         displayBorrowedCheckbox: function() {
             if (parseInt($(this).val()) === 1) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number
