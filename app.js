@@ -245,23 +245,23 @@ var app = {
             searchBooksFilters.bookGenreIds = [];
             searchBooksFilters.borrowed = $("#inlineCheckboxIsBorrowed").is(":checked") // zwraca true or false
 
-            for(var i = 1; i <= $('input.checkbox-book-type').length; i++) {
-                if ($("#inlineCheckboxBookType" + i).is(':checked')) {
-                    searchBooksFilters.bookTypeIds.push(i);
+            $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda "each" (w JS: forEach)
+                if (el.checked) { // JS'owy odpowiednik jQuery'owego $('el')is(':checked')
+                    searchBooksFilters.bookTypeIds.push($(el).attr('data-book-type-id'));
                 }
-            }
+            });
 
-            for(var i = 1; i <= $('input.checkbox-book-form').length; i++) {
-                if ($("#inlineCheckboxBookForm" + i).is(':checked')) {
-                    searchBooksFilters.bookFormIds.push(i);
+            $('input.checkbox-book-form').each(function(index, el) {
+                if (el.checked) {
+                    searchBooksFilters.bookFormIds.push($(el).attr('data-book-form-id'));
                 }
-            }
+            });
 
-            for(var i = 1; i <= $('input.checkbox-book-genre').length; i++) {
-                if ($("#inlineCheckboxBookGenre" + i).is(':checked')) {
-                    searchBooksFilters.bookGenreIds.push(i);
+            $('input.checkbox-book-genre').each(function(index, el) {
+                if (el.checked) {
+                    searchBooksFilters.bookGenreIds.push($(el).attr('data-book-genre-id'));
                 }
-            }
+            });
 
             console.log(searchBooksFilters);
         },
