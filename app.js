@@ -253,7 +253,8 @@ var app = {
             searchBooksFilters.bookTypeIds = [];
             searchBooksFilters.bookFormIds = [];
             searchBooksFilters.bookGenreIds = [];
-            searchBooksFilters.borrowed = $('#inlineCheckboxIsBorrowed').is(':checked') // zwraca true or false
+
+            searchBooksFilters.borrowed = $('input[name=inlineRadioIsBorrowed]:checked').val();
 
             $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda 'each' (w JS: forEach)
                 if (el.checked) { // JS'owy odpowiednik jQuery'owego $('el')is(':checked')
@@ -276,6 +277,7 @@ var app = {
             app.models.book.getCollection(searchBooksFilters).then(function(response) {
                 console.log(response);
             });
+            // console.log(searchBooksFilters.borrowed);
         },
         displayBorrowedCheckbox: function() {
             if (parseInt($(this).val()) === 1) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number

@@ -26,6 +26,10 @@ app.models.book = {
             queryStringParts.push(genre);
         }
 
+        if (filterParams.borrowed) {
+            queryStringParts.push('borrowed='+filterParams.borrowed);
+        }
+
         if (queryStringParts.length) { // potrzebne jest .length, bo pusta lista jest truthy
             var queryString = queryStringParts.filter(function(el) {
                 return el.length > 0;
