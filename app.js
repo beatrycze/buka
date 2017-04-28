@@ -98,7 +98,9 @@ var app = {
         displayPaperBooks: function() {
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection(1).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
+            app.models.book.getCollection({
+                bookTypeIds: [1]
+            }).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'Paper books',
                     books: response
@@ -109,7 +111,9 @@ var app = {
         displayEbooks: function() {
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection(2).then(function(response) {
+            app.models.book.getCollection({
+                bookTypeIds: [2]
+            }).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'E-books',
                     books: response
@@ -120,7 +124,9 @@ var app = {
         displayAudiobooks: function() {
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection(3).then(function(response) {
+            app.models.book.getCollection({
+                bookTypeIds: [3]
+            }).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'Audiobooks',
                     books: response
@@ -131,7 +137,7 @@ var app = {
         displayAllBooks: function() {
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection().then(function(response) {
+            app.models.book.getCollection({}).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'All books',
                     books: response
@@ -166,7 +172,9 @@ var app = {
             var bookFormType = $(this).attr('data-book-form-type');
             highlightMenuTab('menuTabBookList');
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
-            app.models.book.getCollection(null, bookFormId, null).then(function(response) {
+            app.models.book.getCollection({
+                bookFormIds: [bookFormId]
+            }).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookFormType),
                     books: response
@@ -179,7 +187,9 @@ var app = {
             var bookGenreType = $(this).attr('data-book-genre-type');
             highlightMenuTab('menuTabBookList');
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
-            app.models.book.getCollection(null, null, bookGenreId).then(function(response) {
+            app.models.book.getCollection({
+                bookGenreIds: [bookGenreId]
+            }).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookGenreType),
                     books: response
@@ -263,7 +273,9 @@ var app = {
                 }
             });
 
-            console.log(searchBooksFilters);
+            app.models.book.getCollection(searchBooksFilters).then(function(response) {
+                console.log(response);
+            });
         },
         displayBorrowedCheckbox: function() {
             if (parseInt($(this).val()) === 1) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number

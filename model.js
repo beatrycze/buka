@@ -1,15 +1,38 @@
 var API_URL = "http://localhost:3000";
 
 app.models.book = {
-    getCollection: function(bookTypeId, bookFormId, bookGenreId) { // argumenty funkcji są pozycyjne (kolejność ma znaczenie!)
-        if(bookTypeId) {
-            return $.get(API_URL + '/books', {bookTypeId: bookTypeId});
-        } else if(bookFormId) {
-            return $.get(API_URL + '/books', {bookFormId: bookFormId});
-        } else if(bookGenreId) {
-            return $.get(API_URL + '/books', {bookGenreId: bookGenreId});
+    getCollection: function(filterParams) {
+        var queryStringParts = [];
+
+        if (filterParams.bookTypeIds) {
+            var type = filterParams.bookTypeIds.map(function(el) { // nazwy kluczy obiektu (.bookTypeIds itd.) są istotne (muszą być takie same jak w pliku app.js)
+                // natomiast nazwa zmiennej, pod kt dostępny jest obiekt (filterParams) nie ma znaczenia (to searchBooksFilters w app.js)
+                return 'bookTypeId='+el;
+            }).join('&');
+            queryStringParts.push(type);
+        }
+
+        if (filterParams.bookFormIds) {
+            var form = filterParams.bookFormIds.map(function(el) {
+                return 'bookFormId='+el;
+            }).join('&');
+            queryStringParts.push(form);
+        }
+
+        if (filterParams.bookGenreIds) {
+            var genre = filterParams.bookGenreIds.map(function(el) {
+                return 'bookGenreId='+el;
+            }).join('&');
+            queryStringParts.push(genre);
+        }
+
+        if (queryStringParts.length) { // potrzebne jest .length, bo pusta lista jest truthy
+            var queryString = queryStringParts.filter(function(el) {
+                return el.length > 0;
+            }).join('&');
+            return $.get(API_URL + '/books?' + queryString);
         } else {
-            return $.get(API_URL + '/books');
+            return $.get(API_URL + '/books'); // w app.js muszę przekazać pusty obiekt jako argument funkcji (!)
         }
     },
     getItem: function(id) {
