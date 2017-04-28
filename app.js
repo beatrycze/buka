@@ -7,10 +7,10 @@ var app = {
             return Handlebars.compile(source);
         },
         compileHbsTemplates: function() {
-            app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate("#home");
-            app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate("#add-edit-book");
-            app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate("#filter-books");
-            app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate("#wish-list");
+            app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate('#home');
+            app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
+            app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
+            app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate('#wish-list');
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
             app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
@@ -28,7 +28,7 @@ var app = {
     selectors: {}, // obiekt zostanie utworzony PO document ready
     actions: {
         displayHomepage: function() {
-            var context = {title: "Hello, book lovers!", subtitle: "Work in progress..."};
+            var context = {title: 'Hello, book lovers!', subtitle: 'Work in progress...'};
             var homepageHtmlResult = app.templates.homepageTemplate(context);
             unhighlightMenuTab();
             $('#container').html(homepageHtmlResult);
@@ -91,7 +91,7 @@ var app = {
         },
         displayWishListPage: function() {
             highlightMenuTab('menuTabWishList');
-            var context = {title: "Here will be a list of books that I want to have."};
+            var context = {title: 'Here will be a list of books that I want to have.'};
             var wishListPageHtmlResult = app.templates.wishListPageTemplate(context);
             $('#container').html(wishListPageHtmlResult);
         },
@@ -199,53 +199,53 @@ var app = {
         },
         deleteBook: function() {
             var bookId = $(this).attr('data-book-id');
-            var bookToDelete = confirm("BUKA SAYS: This book will be deleted. Are you sure?");
+            var bookToDelete = confirm('BUKA SAYS: This book will be deleted. Are you sure?');
             if(bookToDelete) {
                 addSpinner();
                 app.models.book.deleteItem(bookId).then(function() {
                     removeSpinner();
-                    alert("BUKA SAYS: The book number " + bookId + " was deleted."); // przeglądarka nie robi "repaint"
-                    // (namalowanie HTML+CSS od nowa) po zdjęciu klasy "spinner"; rozbicie jednej promisy na dwie promisy
-                    // (najpierw zdjęcie css, potem wyświetlenie alertu) nie rozwiązuje problemu, dalej nie ma "repaint"
+                    alert('BUKA SAYS: The book number ' + bookId + ' was deleted.'); // przeglądarka nie robi 'repaint'
+                    // (namalowanie HTML+CSS od nowa) po zdjęciu klasy 'spinner'; rozbicie jednej promisy na dwie promisy
+                    // (najpierw zdjęcie css, potem wyświetlenie alertu) nie rozwiązuje problemu, dalej nie ma 'repaint'
                     // TODO force repaint here
                 }).then(app.actions.displayAllBooks);
             } else {
-                alert("BUKA SAYS: Ok, I will leave this book where it is.");
+                alert('BUKA SAYS: Ok, I will leave this book where it is.');
             }
         },
         addBook: function() {
             var book = {
-                title: $("#inputBookTitle").val(),
-                author: $("#inputBookAuthor").val(),
-                description: $("#inputBookDescription").val(),
-                bookTypeId: $("#singleType").val(),
-                bookFormId: $("#singleForm").val(),
-                bookGenreId: $("#singleGenre").val(),
-                borrowed: $("#borrowedCheckbox").is(":checked") // zwraca true or false
+                title: $('#inputBookTitle').val(),
+                author: $('#inputBookAuthor').val(),
+                description: $('#inputBookDescription').val(),
+                bookTypeId: $('#singleType').val(),
+                bookFormId: $('#singleForm').val(),
+                bookGenreId: $('#singleGenre').val(),
+                borrowed: $('#borrowedCheckbox').is(':checked') // zwraca true or false
             };
 
             addSpinner();
             app.models.book.createItem(book).then(function() {
                 removeSpinner();
-                alert("BUKA SAYS: New book has been added, oh yeah!");
+                alert('BUKA SAYS: New book has been added, oh yeah!');
             }).then(app.actions.displayAllBooks);
         },
         updateBook: function() {
             var bookId = $('#inputBookId').val();
             var book = {
-                title: $("#inputBookTitle").val(),
-                author: $("#inputBookAuthor").val(),
-                description: $("#inputBookDescription").val(),
-                bookTypeId: $("#singleType").val(),
-                bookFormId: $("#singleForm").val(),
-                bookGenreId: $("#singleGenre").val(),
-                borrowed: $("#borrowedCheckbox").is(":checked") // zwraca true or false
+                title: $('#inputBookTitle').val(),
+                author: $('#inputBookAuthor').val(),
+                description: $('#inputBookDescription').val(),
+                bookTypeId: $('#singleType').val(),
+                bookFormId: $('#singleForm').val(),
+                bookGenreId: $('#singleGenre').val(),
+                borrowed: $('#borrowedCheckbox').is(':checked') // zwraca true or false
             };
 
             addSpinner();
             app.models.book.updateItem(bookId, book).then(function() {
                 removeSpinner();
-                alert("BUKA SAYS: This book has been updated, oh yeah!");
+                alert('BUKA SAYS: This book has been updated, oh yeah!');
             }).then(app.actions.displayAllBooks);
         },
         searchBooks: function() {
@@ -253,9 +253,9 @@ var app = {
             searchBooksFilters.bookTypeIds = [];
             searchBooksFilters.bookFormIds = [];
             searchBooksFilters.bookGenreIds = [];
-            searchBooksFilters.borrowed = $("#inlineCheckboxIsBorrowed").is(":checked") // zwraca true or false
+            searchBooksFilters.borrowed = $('#inlineCheckboxIsBorrowed').is(':checked') // zwraca true or false
 
-            $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda "each" (w JS: forEach)
+            $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda 'each' (w JS: forEach)
                 if (el.checked) { // JS'owy odpowiednik jQuery'owego $('el')is(':checked')
                     searchBooksFilters.bookTypeIds.push($(el).attr('data-book-type-id'));
                 }
@@ -282,7 +282,7 @@ var app = {
                 $('#display-borrowed-checkbox').show(600);
             } else {
                 $('#display-borrowed-checkbox').hide(600);
-                $('#borrowedCheckbox').prop("checked", false); // zapobiega zaznaczeniu checkboxa w przypadku zmiany typu
+                $('#borrowedCheckbox').prop('checked', false); // zapobiega zaznaczeniu checkboxa w przypadku zmiany typu
                 // na paper book, a potem przywróceniu typu audioboook lub e-book
             }
         }
