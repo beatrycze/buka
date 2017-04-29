@@ -248,8 +248,8 @@ var app = {
                 alert('BUKA SAYS: This book has been updated, oh yeah!');
             }).then(app.actions.displayAllBooks);
         },
-        searchBooks: function() {
-            var searchBooksFilters = {
+        displayBookSearch: function() {
+            var searchBookFilters = {
                 bookTypeIds: [],
                 bookFormIds: [],
                 bookGenreIds: [],
@@ -260,34 +260,34 @@ var app = {
 
             $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda 'each' (w JS: forEach)
                 if (el.checked) { // JS'owy odpowiednik jQuery'owego $('el')is(':checked')
-                    searchBooksFilters.bookTypeIds.push($(el).attr('data-book-type-id'));
+                    searchBookFilters.bookTypeIds.push($(el).attr('data-book-type-id'));
                     filterLabels.push($(el).attr('data-book-type-type'));
                 }
             });
 
             $('input.checkbox-book-form').each(function(index, el) {
                 if (el.checked) {
-                    searchBooksFilters.bookFormIds.push($(el).attr('data-book-form-id'));
+                    searchBookFilters.bookFormIds.push($(el).attr('data-book-form-id'));
                     filterLabels.push($(el).attr('data-book-form-type'));
                 }
             });
 
             $('input.checkbox-book-genre').each(function(index, el) {
                 if (el.checked) {
-                    searchBooksFilters.bookGenreIds.push($(el).attr('data-book-genre-id'));
+                    searchBookFilters.bookGenreIds.push($(el).attr('data-book-genre-id'));
                     filterLabels.push($(el).attr('data-book-genre-type'));
                 }
             });
 
-            if (searchBooksFilters.borrowed) {
-                var label = (searchBooksFilters.borrowed === 'true' ? '' : 'not ') + 'borrowed'; // cond ? trueValue : falseValue
+            if (searchBookFilters.borrowed) {
+                var label = (searchBookFilters.borrowed === 'true' ? '' : 'not ') + 'borrowed'; // cond ? trueValue : falseValue
                 // (if na wyrażenie, nie na instrukcję)
                 filterLabels.push(label);
             }
 
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection(searchBooksFilters).then(function(response) {
+            app.models.book.getCollection(searchBookFilters).then(function(response) {
                 var bookListHeader = filterLabels.filter(function(el) {
                     return el.length > 0;
                 });
@@ -327,7 +327,7 @@ var app = {
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
             $('#container').on('click', '#save-changes-btn', app.actions.updateBook);
-            $('#container').on('click', '#search-books-btn', app.actions.searchBooks);
+            $('#container').on('click', '#search-books-btn', app.actions.displayBookSearch);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
         }
