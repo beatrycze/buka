@@ -253,31 +253,50 @@ var app = {
             searchBooksFilters.bookTypeIds = [];
             searchBooksFilters.bookFormIds = [];
             searchBooksFilters.bookGenreIds = [];
-
             searchBooksFilters.borrowed = $('input[name=inlineRadioIsBorrowed]:checked').val();
+
+            var filterLabels = [];
 
             $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda 'each' (w JS: forEach)
                 if (el.checked) { // JS'owy odpowiednik jQuery'owego $('el')is(':checked')
                     searchBooksFilters.bookTypeIds.push($(el).attr('data-book-type-id'));
+                    filterLabels.push($(el).attr('data-book-type-type'));
                 }
             });
 
             $('input.checkbox-book-form').each(function(index, el) {
                 if (el.checked) {
                     searchBooksFilters.bookFormIds.push($(el).attr('data-book-form-id'));
+                    filterLabels.push($(el).attr('data-book-form-type'));
                 }
             });
 
             $('input.checkbox-book-genre').each(function(index, el) {
                 if (el.checked) {
                     searchBooksFilters.bookGenreIds.push($(el).attr('data-book-genre-id'));
+                    filterLabels.push($(el).attr('data-book-genre-type'));
                 }
             });
 
+            if (searchBooksFilters.borrowed) {
+                var label = (searchBooksFilters.borrowed === 'true' ? '' : 'not ') + 'borrowed'; // cond ? trueValue : falseValue
+                // (if na wyrażenie, nie na instrukcję)
+                filterLabels.push(label);
+            }
+
+            highlightMenuTab('menuTabBookList');
+            addSpinner();
             app.models.book.getCollection(searchBooksFilters).then(function(response) {
-                console.log(response);
+                var bookListHeader = filterLabels.filter(function(el) {
+                    return el.length > 0;
+                });
+                var header = (bookListHeader.length ? bookListHeader.join(', ') : 'all books');
+                $('#container').html(app.templates.booksListTemplate({
+                    header: capitalize('selected filter(s): ' + header),
+                    books: response
+                }));
+                removeSpinner();
             });
-            // console.log(searchBooksFilters.borrowed);
         },
         displayBorrowedCheckbox: function() {
             if (parseInt($(this).val()) === 1) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number

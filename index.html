@@ -148,7 +148,7 @@
             <label class="block text-uppercase">Book types</label>
             {{#each types}}
             <label class="checkbox-inline">
-                <input type="checkbox" class="checkbox-book-type" data-book-type-id={{id}}> {{type}}
+                <input type="checkbox" class="checkbox-book-type" data-book-type-id={{id}} data-book-type-type={{type}}> {{type}}
             </label>
             {{/each}}
         </div>
@@ -157,7 +157,7 @@
             <label class="block text-uppercase">Book forms</label>
             {{#each forms}}
             <label class="checkbox-inline">
-                <input type="checkbox" class="checkbox-book-form" data-book-form-id={{id}}> {{type}}
+                <input type="checkbox" class="checkbox-book-form" data-book-form-id={{id}} data-book-form-type={{type}}> {{type}}
             </label>
             {{/each}}
         </div>
@@ -166,7 +166,7 @@
             <label class="block text-uppercase">Book genres</label>
             {{#each genres}}
             <label class="checkbox-inline">
-                <input type="checkbox" class="checkbox-book-genre" data-book-genre-id={{id}}> {{type}}
+                <input type="checkbox" class="checkbox-book-genre" data-book-genre-id={{id}} data-book-genre-type={{type}}> {{type}}
             </label>
             {{/each}}
         </div>
