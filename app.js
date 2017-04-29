@@ -249,11 +249,12 @@ var app = {
             }).then(app.actions.displayAllBooks);
         },
         searchBooks: function() {
-            var searchBooksFilters = {};
-            searchBooksFilters.bookTypeIds = [];
-            searchBooksFilters.bookFormIds = [];
-            searchBooksFilters.bookGenreIds = [];
-            searchBooksFilters.borrowed = $('input[name=inlineRadioIsBorrowed]:checked').val();
+            var searchBooksFilters = {
+                bookTypeIds: [],
+                bookFormIds: [],
+                bookGenreIds: [],
+                borrowed: $('input[name=inlineRadioIsBorrowed]:checked').val()
+            };
 
             var filterLabels = [];
 
