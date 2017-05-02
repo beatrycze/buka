@@ -12,8 +12,8 @@ var app = {
             app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate('#wish-list');
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
-            app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
-            app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
+            // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
+            // app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
         },
         createUiSelectors: function() {
             app.selectors = {
@@ -317,11 +317,13 @@ var app = {
             $('#e-book-filter').on('click', app.actions.displayEbooks);
             $('#audiobook-filter').on('click', app.actions.displayAudiobooks);
             $('#all-books-filter').on('click', app.actions.displayAllBooks);
-            $('#form-filter').on('click', app.actions.displayFormsList);
-            $('#genre-filter').on('click', app.actions.displayGenresList);
+            // $('#form-filter').on('click', app.actions.displayFormsList);
+            // $('#genre-filter').on('click', app.actions.displayGenresList);
             $('#multi-filter').on('click', app.actions.displayAllFilters);
-            $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
-            $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
+            // $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
+            // $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
+            $('.book-form-link').on('click', app.actions.displayBooksFilteredByForm);
+            $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
@@ -330,6 +332,8 @@ var app = {
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
         }
+        // registerOnInit
+        // registerOnFormsGenresLoaded
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
     init: function() {
@@ -337,6 +341,7 @@ var app = {
         app.eventHandlers.registerEventHandlers();
         app.helper.createUiSelectors();
         app.actions.displayHomepage();
+        $('[data-submenu]').submenupicker();
     }
 };
 
