@@ -19,7 +19,6 @@ var app = {
             app.selectors = {
                 menuTabBookList: $('#my-library'),
                 menuTabAddBook: $('#add-book-form'),
-                menuTabFilterBooks: $('#filter-books-page'),
                 menuTabWishList: $('#wish-list-page'),
                 menuTabAll: $('#main-menu li')
             }
@@ -69,24 +68,6 @@ var app = {
                     bookForms: responses[2],
                     bookGenres: responses[3]
                 }));
-            });
-        },
-        displayFilterBooksPage: function() {
-            highlightMenuTab('menuTabFilterBooks');
-            addSpinner();
-
-            var bookTypesPromise = app.models.bookTypes.getCollection();
-            var bookFormsPromise = app.models.bookForms.getCollection();
-            var bookGenresPromise = app.models.bookGenres.getCollection();
-
-            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
-                $('#container').html(app.templates.filterBooksPageTemplate({
-                    title: 'Use these filters to find the books you are looking for.',
-                    types: responses[0],
-                    forms: responses[1],
-                    genres: responses[2]
-                }));
-                removeSpinner();
             });
         },
         displayWishListPage: function() {
@@ -163,6 +144,24 @@ var app = {
                 $('#container').html(app.templates.genresListTemplate({
                     header: 'Genres:',
                     genres: response
+                }));
+                removeSpinner();
+            });
+        },
+        displayAllFilters: function() {
+            highlightMenuTab('menuTabBookList');
+            addSpinner();
+
+            var bookTypesPromise = app.models.bookTypes.getCollection();
+            var bookFormsPromise = app.models.bookForms.getCollection();
+            var bookGenresPromise = app.models.bookGenres.getCollection();
+
+            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
+                $('#container').html(app.templates.filterBooksPageTemplate({
+                    title: 'Use these filters to find the books you are looking for.',
+                    types: responses[0],
+                    forms: responses[1],
+                    genres: responses[2]
                 }));
                 removeSpinner();
             });
@@ -314,13 +313,13 @@ var app = {
             $('#home-page').on('click', app.actions.displayHomepage);
             $('#add-book-form').on('click', app.actions.displayAddBookForm);
             $('#wish-list-page').on('click', app.actions.displayWishListPage);
-            $('#filter-books-page').on('click', app.actions.displayFilterBooksPage);
             $('#paper-book-filter').on('click', app.actions.displayPaperBooks);
             $('#e-book-filter').on('click', app.actions.displayEbooks);
             $('#audiobook-filter').on('click', app.actions.displayAudiobooks);
             $('#all-books-filter').on('click', app.actions.displayAllBooks);
             $('#form-filter').on('click', app.actions.displayFormsList);
             $('#genre-filter').on('click', app.actions.displayGenresList);
+            $('#multi-filter').on('click', app.actions.displayAllFilters);
             $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
