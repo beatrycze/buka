@@ -334,7 +334,7 @@ var app = {
             // $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             // $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#click-submenu-forms').on('click', app.actions.displaySubmenuForms);
-            $('.book-form-link').on('click', app.actions.displayBooksFilteredByForm);
+            $('#open-submenu-forms').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
