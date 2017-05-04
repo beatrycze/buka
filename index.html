@@ -78,14 +78,16 @@
                     <li><a id ="audiobook-filter" href="#">Audiobooks</a></li>
                     <li role="separator" class="divider"></li>
                     <li class="dropdown-header">Search by</li>
-                    <li class="dropdown-submenu">
-                    <a href="#">Forms</a>
+                    <li id="open-submenu-forms" class="dropdown-submenu">
+                    <a href="#" id="click-submenu-forms">Forms</a>
 
+                        <!--
                         <ul class="dropdown-menu">
                             <li><a class="book-form-link" data-book-form-id="1" data-book-form-type="poetry" href="#">Poetry</a></li>
                             <li><a class="book-form-link" data-book-form-id="2" data-book-form-type="prose" href="#">Prose</a></li>
                             <li><a class="book-form-link" data-book-form-id="3" data-book-form-type="drama" href="#">Drama</a></li>
                         </ul>
+                        -->
                     </li>
 
                     <li class="dropdown-submenu">
@@ -284,6 +286,14 @@
         </button>
         {{/each}}
         </ol>
+    </script>
+
+    <script id="submenu-forms" type="text/x-handlebars-template">
+        <ul class="dropdown-menu">
+            {{#each forms}}
+            <li><a class="book-form-link" data-book-form-id={{id}} data-book-form-type={{type}} href="#">{{type}}</a></li>
+            {{/each}}
+        </ul>
     </script>
 
     <!--

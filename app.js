@@ -12,6 +12,7 @@ var app = {
             app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate('#wish-list');
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
+            app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
             // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
             // app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
         },
@@ -126,27 +127,37 @@ var app = {
                 removeSpinner();
             });
         },
-        displayFormsList: function() {
+        // displayFormsList: function() {
+        //     highlightMenuTab('menuTabBookList');
+        //     addSpinner();
+        //     app.models.bookForms.getCollection().then(function(response) {
+        //         $('#container').html(app.templates.formsListTemplate({
+        //             header: 'Forms:',
+        //             forms: response
+        //         }));
+        //         removeSpinner();
+        //     });
+        // },
+        // displayGenresList: function() {
+        //     highlightMenuTab('menuTabBookList');
+        //     addSpinner();
+        //     app.models.bookGenres.getCollection().then(function(response) {
+        //         $('#container').html(app.templates.genresListTemplate({
+        //             header: 'Genres:',
+        //             genres: response
+        //         }));
+        //         removeSpinner();
+        //     });
+        // },
+        displaySubmenuForms: function() {
             highlightMenuTab('menuTabBookList');
-            addSpinner();
-            app.models.bookForms.getCollection().then(function(response) {
-                $('#container').html(app.templates.formsListTemplate({
-                    header: 'Forms:',
-                    forms: response
-                }));
-                removeSpinner();
-            });
-        },
-        displayGenresList: function() {
-            highlightMenuTab('menuTabBookList');
-            addSpinner();
-            app.models.bookGenres.getCollection().then(function(response) {
-                $('#container').html(app.templates.genresListTemplate({
-                    header: 'Genres:',
-                    genres: response
-                }));
-                removeSpinner();
-            });
+            $('#open-submenu-forms').append(app.templates.submenuFormsTemplate({
+                forms: [
+                    {id: 1, type: 'Poetry'},
+                    {id: 2, type: 'Prose'},
+                    {id: 3, type: 'Drama'}
+                ]
+            }));
         },
         displayAllFilters: function() {
             highlightMenuTab('menuTabBookList');
@@ -322,6 +333,7 @@ var app = {
             $('#multi-filter').on('click', app.actions.displayAllFilters);
             // $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             // $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
+            $('#click-submenu-forms').on('click', app.actions.displaySubmenuForms);
             $('.book-form-link').on('click', app.actions.displayBooksFilteredByForm);
             $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
