@@ -152,29 +152,19 @@ var app = {
         // },
         displaySubmenuForms: function() {
             highlightMenuTab('menuTabBookList');
-            $('#open-submenu-forms').append(app.templates.submenuFormsTemplate({
-                forms: [
-                    {id: 1, type: 'Poetry'},
-                    {id: 2, type: 'Prose'},
-                    {id: 3, type: 'Drama'}
-                ]
-            }));
+            app.models.bookForms.getCollection().then(function(response) {
+                $('#open-submenu-forms').append(app.templates.submenuFormsTemplate({
+                    forms: response
+                }));
+            });
         },
         displaySubmenuGenres: function() {
             highlightMenuTab('menuTabBookList');
-            $('#open-submenu-genres').append(app.templates.submenuGenresTemplate({
-                genres: [
-                    {id: 1, type: 'Novel'},
-                    {id: 2, type: 'Reportage'},
-                    {id: 3, type: 'Biography'},
-                    {id: 4, type: 'Interview'},
-                    {id: 5, type: 'Essay'},
-                    {id: 6, type: 'Autobiography'},
-                    {id: 7, type: 'Diaries'},
-                    {id: 8, type: 'Letters'},
-                    {id: 9, type: 'Feuilleton'}
-                ]
-            }));
+            app.models.bookGenres.getCollection().then(function(response) {
+                $('#open-submenu-genres').append(app.templates.submenuGenresTemplate({
+                    genres: response
+                }));
+            });
         },
         displayAllFilters: function() {
             highlightMenuTab('menuTabBookList');
