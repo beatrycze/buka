@@ -13,6 +13,7 @@ var app = {
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate('#wish-list');
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
+            app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
             // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
             // app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
         },
@@ -156,6 +157,22 @@ var app = {
                     {id: 1, type: 'Poetry'},
                     {id: 2, type: 'Prose'},
                     {id: 3, type: 'Drama'}
+                ]
+            }));
+        },
+        displaySubmenuGenres: function() {
+            highlightMenuTab('menuTabBookList');
+            $('#open-submenu-genres').append(app.templates.submenuGenresTemplate({
+                genres: [
+                    {id: 1, type: 'Novel'},
+                    {id: 2, type: 'Reportage'},
+                    {id: 3, type: 'Biography'},
+                    {id: 4, type: 'Interview'},
+                    {id: 5, type: 'Essay'},
+                    {id: 6, type: 'Autobiography'},
+                    {id: 7, type: 'Diaries'},
+                    {id: 8, type: 'Letters'},
+                    {id: 9, type: 'Feuilleton'}
                 ]
             }));
         },
@@ -334,7 +351,9 @@ var app = {
             // $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             // $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('#click-submenu-forms').on('click', app.actions.displaySubmenuForms);
+            $('#click-submenu-genres').on('click', app.actions.displaySubmenuGenres);
             $('#open-submenu-forms').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
+            $('#open-submenu-genres').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
