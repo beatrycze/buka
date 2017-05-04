@@ -378,3 +378,10 @@ Handlebars.registerHelper('selected', function(option, value){
         return ''
     }
 });
+
+// http://tutorialzine.com/2015/01/learn-handlebars-in-10-minutes/
+Handlebars.registerHelper('capitalize', function(str){
+    // str is the argument passed to the helper when called
+    str = str || '';
+    return str.slice(0,1).toUpperCase() + str.slice(1);
+});
