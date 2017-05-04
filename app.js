@@ -152,18 +152,22 @@ var app = {
         // },
         displaySubmenuForms: function() {
             highlightMenuTab('menuTabBookList');
+            $('#spinner-submenu-forms').addClass('spinner-small');
             app.models.bookForms.getCollection().then(function(response) {
                 $('#open-submenu-forms').append(app.templates.submenuFormsTemplate({
                     forms: response
                 }));
+                $('#spinner-submenu-forms').removeClass('spinner-small');
             });
         },
         displaySubmenuGenres: function() {
             highlightMenuTab('menuTabBookList');
+            $('#spinner-submenu-genres').addClass('spinner-small');
             app.models.bookGenres.getCollection().then(function(response) {
                 $('#open-submenu-genres').append(app.templates.submenuGenresTemplate({
                     genres: response
                 }));
+                $('#spinner-submenu-genres').removeClass('spinner-small');
             });
         },
         displayAllFilters: function() {
