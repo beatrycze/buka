@@ -347,7 +347,7 @@ var app = {
         }
     },
     eventHandlers: {
-        registerEventHandlers: function() {
+        registerOnInit: function() {
             $('#home-page').on('click', app.actions.displayHomepage);
             $('#add-book-form').on('click', app.actions.displayAddBookForm);
             $('#wish-list-page').on('click', app.actions.displayWishListPage);
@@ -360,8 +360,8 @@ var app = {
             $('#multi-filter').on('click', app.actions.displayAllFilters);
             // $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             // $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
-            $('#click-submenu-forms').on('click', app.actions.displaySubmenuForms);
-            $('#click-submenu-genres').on('click', app.actions.displaySubmenuGenres);
+            // $('#click-submenu-forms').on('click', app.actions.displaySubmenuForms);
+            // $('#click-submenu-genres').on('click', app.actions.displaySubmenuGenres);
             $('#open-submenu-forms').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#open-submenu-genres').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
@@ -372,17 +372,20 @@ var app = {
             $('#container').on('click', '#search-books-btn', app.actions.displayBookSearch);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
+        },
+        registerOnFormsGenresLoaded: function() {
+            app.actions.displaySubmenuForms();
+            app.actions.displaySubmenuGenres();
         }
-        // registerOnInit
-        // registerOnFormsGenresLoaded
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
     init: function() {
         app.helper.compileHbsTemplates();
-        app.eventHandlers.registerEventHandlers();
+        app.eventHandlers.registerOnInit();
         app.helper.createUiSelectors();
         app.actions.displayHomepage();
         $('[data-submenu]').submenupicker();
+        app.eventHandlers.registerOnFormsGenresLoaded();
     }
 };
 
