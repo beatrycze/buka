@@ -158,7 +158,6 @@ var app = {
         //     });
         // },
         displaySubmenuForms: function() {
-            highlightMenuTab('menuTabBookList');
             $('#spinner-submenu-forms').addClass('spinner-small');
             app.models.bookForms.getCollection()
             .then(function(response) {
@@ -169,7 +168,6 @@ var app = {
             });
         },
         displaySubmenuGenres: function() {
-            highlightMenuTab('menuTabBookList');
             $('#spinner-submenu-genres').addClass('spinner-small');
             app.models.bookGenres.getCollection()
             .then(function(response) {
