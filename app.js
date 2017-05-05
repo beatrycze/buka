@@ -41,7 +41,8 @@ var app = {
 
             highlightMenuTab('menuTabAddBook');
             addSpinner();
-            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
+            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise])
+            .then(function(responses) {
                 removeSpinner();
                 $('#container').html(app.templates.addAndEditBookFormTemplate({
                     title: 'Give BUKA more books!',
@@ -60,7 +61,8 @@ var app = {
             var bookGenresPromise = app.models.bookGenres.getCollection();
 
             addSpinner();
-            Promise.all([bookPromise, bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
+            Promise.all([bookPromise, bookTypesPromise, bookFormsPromise, bookGenresPromise])
+            .then(function(responses) {
                 removeSpinner();
                 $('#container').html(app.templates.addAndEditBookFormTemplate({
                     title: 'Something changed? Update it!',
@@ -83,7 +85,8 @@ var app = {
             addSpinner();
             app.models.book.getCollection({
                 bookTypeIds: [1]
-            }).then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
+            })
+            .then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'Paper books',
                     books: response
@@ -96,7 +99,8 @@ var app = {
             addSpinner();
             app.models.book.getCollection({
                 bookTypeIds: [2]
-            }).then(function(response) {
+            })
+            .then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'E-books',
                     books: response
@@ -120,7 +124,8 @@ var app = {
         displayAllBooks: function() {
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection({}).then(function(response) {
+            app.models.book.getCollection({})
+            .then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: 'All books',
                     books: response
@@ -131,7 +136,8 @@ var app = {
         // displayFormsList: function() {
         //     highlightMenuTab('menuTabBookList');
         //     addSpinner();
-        //     app.models.bookForms.getCollection().then(function(response) {
+        //     app.models.bookForms.getCollection()
+        //     .then(function(response) {
         //         $('#container').html(app.templates.formsListTemplate({
         //             header: 'Forms:',
         //             forms: response
@@ -142,7 +148,8 @@ var app = {
         // displayGenresList: function() {
         //     highlightMenuTab('menuTabBookList');
         //     addSpinner();
-        //     app.models.bookGenres.getCollection().then(function(response) {
+        //     app.models.bookGenres.getCollection()
+        //     .then(function(response) {
         //         $('#container').html(app.templates.genresListTemplate({
         //             header: 'Genres:',
         //             genres: response
@@ -153,7 +160,8 @@ var app = {
         displaySubmenuForms: function() {
             highlightMenuTab('menuTabBookList');
             $('#spinner-submenu-forms').addClass('spinner-small');
-            app.models.bookForms.getCollection().then(function(response) {
+            app.models.bookForms.getCollection()
+            .then(function(response) {
                 $('#open-submenu-forms').append(app.templates.submenuFormsTemplate({
                     forms: response
                 }));
@@ -163,7 +171,8 @@ var app = {
         displaySubmenuGenres: function() {
             highlightMenuTab('menuTabBookList');
             $('#spinner-submenu-genres').addClass('spinner-small');
-            app.models.bookGenres.getCollection().then(function(response) {
+            app.models.bookGenres.getCollection()
+            .then(function(response) {
                 $('#open-submenu-genres').append(app.templates.submenuGenresTemplate({
                     genres: response
                 }));
@@ -178,7 +187,8 @@ var app = {
             var bookFormsPromise = app.models.bookForms.getCollection();
             var bookGenresPromise = app.models.bookGenres.getCollection();
 
-            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise]).then(function(responses) {
+            Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise])
+            .then(function(responses) {
                 $('#container').html(app.templates.filterBooksPageTemplate({
                     title: 'Use these filters to find the books you are looking for.',
                     types: responses[0],
@@ -195,7 +205,8 @@ var app = {
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection({
                 bookFormIds: [bookFormId]
-            }).then(function(response) {
+            })
+            .then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
                     header: capitalize(bookFormType),
                     books: response
@@ -223,13 +234,15 @@ var app = {
             var bookToDelete = confirm('BUKA SAYS: This book will be deleted. Are you sure?');
             if(bookToDelete) {
                 addSpinner();
-                app.models.book.deleteItem(bookId).then(function() {
+                app.models.book.deleteItem(bookId)
+                .then(function() {
                     removeSpinner();
                     alert('BUKA SAYS: The book number ' + bookId + ' was deleted.'); // przeglądarka nie robi 'repaint'
                     // (namalowanie HTML+CSS od nowa) po zdjęciu klasy 'spinner'; rozbicie jednej promisy na dwie promisy
                     // (najpierw zdjęcie css, potem wyświetlenie alertu) nie rozwiązuje problemu, dalej nie ma 'repaint'
                     // TODO force repaint here
-                }).then(app.actions.displayAllBooks);
+                })
+                .then(app.actions.displayAllBooks);
             } else {
                 alert('BUKA SAYS: Ok, I will leave this book where it is.');
             }
@@ -246,10 +259,12 @@ var app = {
             };
 
             addSpinner();
-            app.models.book.createItem(book).then(function() {
+            app.models.book.createItem(book)
+            .then(function() {
                 removeSpinner();
                 alert('BUKA SAYS: New book has been added, oh yeah!');
-            }).then(app.actions.displayAllBooks);
+            })
+            .then(app.actions.displayAllBooks);
         },
         updateBook: function() {
             var bookId = $('#inputBookId').val();
@@ -264,10 +279,12 @@ var app = {
             };
 
             addSpinner();
-            app.models.book.updateItem(bookId, book).then(function() {
+            app.models.book.updateItem(bookId, book)
+            .then(function() {
                 removeSpinner();
                 alert('BUKA SAYS: This book has been updated, oh yeah!');
-            }).then(app.actions.displayAllBooks);
+            })
+            .then(app.actions.displayAllBooks);
         },
         displayBookSearch: function() {
             var searchBookFilters = {
@@ -308,7 +325,8 @@ var app = {
 
             highlightMenuTab('menuTabBookList');
             addSpinner();
-            app.models.book.getCollection(searchBookFilters).then(function(response) {
+            app.models.book.getCollection(searchBookFilters)
+            .then(function(response) {
                 var bookListHeader = filterLabels.filter(function(el) {
                     return el.length > 0;
                 });
