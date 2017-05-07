@@ -140,3 +140,7 @@ body {
 .block {
   display: block;
 }
+
+.half-width {
+  width: 50%;
+}

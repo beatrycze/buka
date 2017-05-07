@@ -193,6 +193,7 @@ var app = {
                     forms: responses[1],
                     genres: responses[2]
                 }));
+                app.eventHandlers.registerForAutocomplete();
                 removeSpinner();
             });
         },
@@ -376,6 +377,24 @@ var app = {
         registerOnFormsGenresLoaded: function() {
             app.actions.displaySubmenuForms();
             app.actions.displaySubmenuGenres();
+        },
+        registerForAutocomplete: function() {
+        // https://github.com/biggora/bootstrap-ajax-typeahead
+            $('#title-autocomplete').typeahead({
+                onSelect: function(item) {
+                    console.log(item);
+                },
+                ajax: {
+                    url: "http://localhost:3000/books",
+                    timeout: 500,
+                    displayField: "title",
+                    preDispatch: function (query) {
+                        return {
+                            title_like: query
+                        }
+                    }
+                }
+            })
         }
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready

@@ -7,6 +7,7 @@
     <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
     <script src="node_modules/bootstrap-submenu/dist/js/bootstrap-submenu.js" defer></script>
+    <script src="https://cdn.rawgit.com/biggora/bootstrap-ajax-typeahead/ae5da745/src/bootstrap-typeahead.js"></script>
     <script src="node_modules/handlebars/dist/handlebars.js"></script>
     <script src="app.js"></script>
     <script src="utils.js"></script>
@@ -260,6 +261,10 @@
         </div>
         <div class="row-separator-top">
             <button type="button" id="search-books-btn" class="btn btn-primary">Search</button>
+        </div>
+        <hr>
+        <div class="row-separator-top">
+            <input type="text" class="form-control half-width" id="title-autocomplete" placeholder="Book title" value="">
         </div>
     </script>
 
