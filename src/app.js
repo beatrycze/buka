@@ -7,10 +7,10 @@ var app = {
             return Handlebars.compile(source);
         },
         compileHbsTemplates: function() {
-            app.templates.homepageTemplate = app.helper.compileSingleHbsTemplate('#home');
+            // app.templates.homePage = app.helper.compileSingleHbsTemplate('#home');
             app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
             app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
-            app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate('#wish-list');
+            // app.templates.wishListPage = app.helper.compileSingleHbsTemplate('#wish-list');
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
             app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
@@ -30,7 +30,7 @@ var app = {
     actions: {
         displayHomepage: function() {
             var context = {title: 'Hello, book lovers!', subtitle: 'Work in progress...'};
-            var homepageHtmlResult = app.templates.homepageTemplate(context);
+            var homepageHtmlResult = app.templates.homePage(context);
             unhighlightMenuTab();
             $('#container').html(homepageHtmlResult);
         },
@@ -77,7 +77,7 @@ var app = {
         displayWishListPage: function() {
             highlightMenuTab('menuTabWishList');
             var context = {title: 'Here will be a list of books that I want to have.'};
-            var wishListPageHtmlResult = app.templates.wishListPageTemplate(context);
+            var wishListPageHtmlResult = app.templates.wishListPage(context);
             $('#container').html(wishListPageHtmlResult);
         },
         displayPaperBooks: function() {
