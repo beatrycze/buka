@@ -11,7 +11,7 @@ var app = {
             app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
             app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             // app.templates.wishListPage = app.helper.compileSingleHbsTemplate('#wish-list');
-            app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
+            // app.templates.booksListPage = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
             app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
             // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
@@ -87,7 +87,7 @@ var app = {
                 bookTypeIds: [1]
             })
             .then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: 'Paper books',
                     books: response
                 }));
@@ -101,7 +101,7 @@ var app = {
                 bookTypeIds: [2]
             })
             .then(function(response) {
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: 'E-books',
                     books: response
                 }));
@@ -114,7 +114,7 @@ var app = {
             app.models.book.getCollection({
                 bookTypeIds: [3]
             }).then(function(response) {
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: 'Audiobooks',
                     books: response
                 }));
@@ -126,7 +126,7 @@ var app = {
             addSpinner();
             app.models.book.getCollection({})
             .then(function(response) {
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: 'All books',
                     books: response
                 }));
@@ -205,7 +205,7 @@ var app = {
                 bookFormIds: [bookFormId]
             })
             .then(function(response) {
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: capitalize(bookFormType),
                     books: response
                 }));
@@ -220,7 +220,7 @@ var app = {
             app.models.book.getCollection({
                 bookGenreIds: [bookGenreId]
             }).then(function(response) {
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: capitalize(bookGenreType),
                     books: response
                 }));
@@ -329,7 +329,7 @@ var app = {
                     return el.length > 0;
                 });
                 var header = (bookListHeader.length ? bookListHeader.join(', ') : 'all books');
-                $('#container').html(app.templates.booksListTemplate({
+                $('#container').html(app.templates.booksListPage({
                     header: capitalize('selected filter(s): ' + header),
                     books: response
                 }));
