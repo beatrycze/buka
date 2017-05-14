@@ -9,7 +9,7 @@ var app = {
         compileHbsTemplates: function() {
             // app.templates.homePage = app.helper.compileSingleHbsTemplate('#home');
             // app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
-            app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
+            // app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             // app.templates.wishListPage = app.helper.compileSingleHbsTemplate('#wish-list');
             // app.templates.booksListPage = app.helper.compileSingleHbsTemplate('#books-list');
             app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
@@ -187,7 +187,7 @@ var app = {
 
             Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise])
             .then(function(responses) {
-                $('#container').html(app.templates.filterBooksPageTemplate({
+                $('#container').html(app.templates.filtersPage({
                     title: 'Use these filters to find the books you are looking for.',
                     types: responses[0],
                     forms: responses[1],

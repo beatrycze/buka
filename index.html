@@ -130,54 +130,6 @@
 
     <!-- HBS Temlates -->
 
-    <script id="filter-books" type="text/x-handlebars-template">
-        <div class="spacer">
-            <h2>{{title}}</h2>
-        </div>
-        <div>
-            <label class="block text-uppercase">Book types</label>
-            {{#each types}}
-            <label class="checkbox-inline">
-                <input type="checkbox" class="checkbox-book-type" data-book-type-id={{id}} data-book-type-type={{type}}> {{type}}
-            </label>
-            {{/each}}
-        </div>
-        <hr>
-        <div>
-            <label class="block text-uppercase">Book forms</label>
-            {{#each forms}}
-            <label class="checkbox-inline">
-                <input type="checkbox" class="checkbox-book-form" data-book-form-id={{id}} data-book-form-type={{type}}> {{type}}
-            </label>
-            {{/each}}
-        </div>
-        <hr>
-        <div>
-            <label class="block text-uppercase">Book genres</label>
-            {{#each genres}}
-            <label class="checkbox-inline">
-                <input type="checkbox" class="checkbox-book-genre" data-book-genre-id={{id}} data-book-genre-type={{type}}> {{type}}
-            </label>
-            {{/each}}
-        </div>
-        <hr>
-        <div>
-            <label class="block text-uppercase">Is borrowed?</label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioIsBorrowed" id="inlineRadioTrue" value="true"> Yes
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioIsBorrowed" id="inlineRadioFalse" value="false"> No
-            </label>
-            <label class="radio-inline">
-                <input type="radio" name="inlineRadioIsBorrowed" id="inlineRadioAll" value=""> I don't care
-            </label>
-        </div>
-        <div class="row-separator-top">
-            <button type="button" id="search-books-btn" class="btn btn-primary">Search</button>
-        </div>
-    </script>
-
     <script id="submenu-forms" type="text/x-handlebars-template">
         <ul class="dropdown-menu">
             {{#each forms}}
