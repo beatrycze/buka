@@ -2,21 +2,6 @@ var app = {
     templates: {}, // obiekt zostanie utworzony PO document ready
     models: {}, // z osobnego pliku
     helper: {
-        compileSingleHbsTemplate: function(selector) {
-            var source = $(selector).html();
-            return Handlebars.compile(source);
-        },
-        compileHbsTemplates: function() {
-            // app.templates.homePage = app.helper.compileSingleHbsTemplate('#home');
-            // app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
-            // app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
-            // app.templates.wishListPage = app.helper.compileSingleHbsTemplate('#wish-list');
-            // app.templates.booksListPage = app.helper.compileSingleHbsTemplate('#books-list');
-            // app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
-            // app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
-            // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
-            // app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
-        },
         createUiSelectors: function() {
             app.selectors = {
                 menuTabBookList: $('#my-library'),
@@ -380,7 +365,6 @@ var app = {
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
     init: function() {
-        app.helper.compileHbsTemplates();
         app.eventHandlers.registerOnInit();
         app.helper.createUiSelectors();
         app.actions.displayHomepage();
