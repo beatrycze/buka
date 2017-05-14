@@ -12,8 +12,8 @@ var app = {
             // app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             // app.templates.wishListPage = app.helper.compileSingleHbsTemplate('#wish-list');
             // app.templates.booksListPage = app.helper.compileSingleHbsTemplate('#books-list');
-            app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
-            app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
+            // app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
+            // app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
             // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
             // app.templates.genresListTemplate = app.helper.compileSingleHbsTemplate('#genres');
         },
@@ -161,7 +161,7 @@ var app = {
             $('#spinner-submenu-forms').addClass('spinner-small');
             app.models.bookForms.getCollection()
             .then(function(response) {
-                $('#open-submenu-forms').append(app.templates.submenuFormsTemplate({
+                $('#open-submenu-forms').append(app.templates.formsSubmenu({
                     forms: response
                 }));
                 $('#spinner-submenu-forms').removeClass('spinner-small');
@@ -171,7 +171,7 @@ var app = {
             $('#spinner-submenu-genres').addClass('spinner-small');
             app.models.bookGenres.getCollection()
             .then(function(response) {
-                $('#open-submenu-genres').append(app.templates.submenuGenresTemplate({
+                $('#open-submenu-genres').append(app.templates.genresSubmenu({
                     genres: response
                 }));
                 $('#spinner-submenu-genres').removeClass('spinner-small');
