@@ -8,7 +8,7 @@ var app = {
         },
         compileHbsTemplates: function() {
             // app.templates.homePage = app.helper.compileSingleHbsTemplate('#home');
-            app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
+            // app.templates.addAndEditBookFormTemplate = app.helper.compileSingleHbsTemplate('#add-edit-book');
             app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             // app.templates.wishListPage = app.helper.compileSingleHbsTemplate('#wish-list');
             // app.templates.booksListPage = app.helper.compileSingleHbsTemplate('#books-list');
@@ -44,7 +44,7 @@ var app = {
             Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise])
             .then(function(responses) {
                 removeSpinner();
-                $('#container').html(app.templates.addAndEditBookFormTemplate({
+                $('#container').html(app.templates.addAndEditBookForm({
                     title: 'Give BUKA more books!',
                     displayBorrowedCheckbox: false,
                     bookTypes: responses[0],
@@ -64,7 +64,7 @@ var app = {
             Promise.all([bookPromise, bookTypesPromise, bookFormsPromise, bookGenresPromise])
             .then(function(responses) {
                 removeSpinner();
-                $('#container').html(app.templates.addAndEditBookFormTemplate({
+                $('#container').html(app.templates.addAndEditBookForm({
                     title: 'Something changed? Update it!',
                     displayBorrowedCheckbox: responses[0].bookTypeId === 1,
                     book: responses[0],
