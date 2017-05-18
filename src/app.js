@@ -118,30 +118,6 @@ var app = {
                 removeSpinner();
             });
         },
-        // displayFormsList: function() {
-        //     highlightMenuTab('menuTabBookList');
-        //     addSpinner();
-        //     app.models.bookForms.getCollection()
-        //     .then(function(response) {
-        //         $('#container').html(app.templates.formsListTemplate({
-        //             header: 'Forms:',
-        //             forms: response
-        //         }));
-        //         removeSpinner();
-        //     });
-        // },
-        // displayGenresList: function() {
-        //     highlightMenuTab('menuTabBookList');
-        //     addSpinner();
-        //     app.models.bookGenres.getCollection()
-        //     .then(function(response) {
-        //         $('#container').html(app.templates.genresListTemplate({
-        //             header: 'Genres:',
-        //             genres: response
-        //         }));
-        //         removeSpinner();
-        //     });
-        // },
         displaySubmenuForms: function() {
             $('#spinner-submenu-forms').addClass('spinner-small');
             app.models.bookForms.getCollection()
@@ -340,13 +316,7 @@ var app = {
             $('#e-book-filter').on('click', app.actions.displayEbooks);
             $('#audiobook-filter').on('click', app.actions.displayAudiobooks);
             $('#all-books-filter').on('click', app.actions.displayAllBooks);
-            // $('#form-filter').on('click', app.actions.displayFormsList);
-            // $('#genre-filter').on('click', app.actions.displayGenresList);
             $('#multi-filter').on('click', app.actions.displayAllFilters);
-            // $('#container').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
-            // $('#container').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
-            // $('#click-submenu-forms').on('click', app.actions.displaySubmenuForms);
-            // $('#click-submenu-genres').on('click', app.actions.displaySubmenuGenres);
             $('#open-submenu-forms').on('click', '.book-form-link', app.actions.displayBooksFilteredByForm);
             $('#open-submenu-genres').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
