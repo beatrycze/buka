@@ -59,7 +59,9 @@ var app = {
                 }));
                 $.validate({
                     form: '#add-and-edit-book',
-                    modules: 'html5'
+                    onSuccess : function() {
+                        app.actions.updateBook();
+                    }
                 });
             });
         },
@@ -326,7 +328,7 @@ var app = {
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
             $('#container').on('click', '#add-book-btn', app.actions.addBook);
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
-            $('#container').on('click', '#save-changes-btn', app.actions.updateBook);
+            // $('#container').on('click', '#save-changes-btn', app.actions.updateBook);
             $('#container').on('click', '#search-books-btn', app.actions.displayBookSearch);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
