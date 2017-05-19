@@ -57,6 +57,10 @@ var app = {
                     bookForms: responses[2],
                     bookGenres: responses[3]
                 }));
+                $.validate({
+                    form: '#add-and-edit-book',
+                    modules: 'html5'
+                });
             });
         },
         displayWishListPage: function() {
@@ -236,7 +240,6 @@ var app = {
                 bookGenreId: $('#singleGenre').val(),
                 borrowed: $('#borrowedCheckbox').is(':checked') // zwraca true or false
             };
-
             addSpinner();
             app.models.book.updateItem(bookId, book)
             .then(function() {

@@ -1,18 +1,18 @@
 <div class="spacer">
     <h2>{{title}}</h2>
 </div>
-<form class="form-horizontal">
+<form class="form-horizontal" id="add-and-edit-book">
     <input type="hidden" class="form-control" id="inputBookId" value="{{book.id}}">
 <div class="form-group">
     <label for="inputBookTitle" class="col-sm-2 control-label">Title</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="inputBookTitle" placeholder="Title" value="{{book.title}}" required>
+    <input type="text" class="form-control" id="inputBookTitle" placeholder="Title" value="{{book.title}}" data-validation="required" required>
     </div>
 </div>
 <div class="form-group">
     <label for="inputBookAuthor" class="col-sm-2 control-label">Author</label>
     <div class="col-sm-10">
-    <input type="text" class="form-control" id="inputBookAuthor" placeholder="Author" value="{{book.author}}" required>
+    <input type="text" class="form-control" id="inputBookAuthor" placeholder="Author" value="{{book.author}}" data-validation="required" required>
     </div>
 </div>
 <div class="form-group">
