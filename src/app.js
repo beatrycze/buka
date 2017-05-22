@@ -59,6 +59,7 @@ var app = {
                 }));
                 $.validate({
                     form: '#add-and-edit-book',
+                    modules: 'logic',
                     onSuccess: function() {
                         app.actions.updateBook();
                     }
