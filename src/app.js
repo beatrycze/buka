@@ -32,6 +32,7 @@ var app = {
                 $('#container').html(app.templates.addAndEditBookForm({
                     title: 'Give BUKA more books!',
                     displayBorrowedCheckbox: false,
+                    displayGenreSelect: false,
                     bookTypes: responses[0],
                     bookForms: responses[1],
                     bookGenres: responses[2]
@@ -52,6 +53,7 @@ var app = {
                 $('#container').html(app.templates.addAndEditBookForm({
                     title: 'Something changed? Update it!',
                     displayBorrowedCheckbox: responses[0].bookTypeId === 1,
+                    displayGenreSelect: responses[0].bookFormId === 2,
                     book: responses[0],
                     bookTypes: responses[1],
                     bookForms: responses[2],
@@ -311,6 +313,15 @@ var app = {
                 $('#borrowedCheckbox').prop('checked', false); // zapobiega zaznaczeniu checkboxa w przypadku zmiany typu
                 // na paper book, a potem przywróceniu typu audioboook lub e-book
             }
+        },
+        displayGenreSelect: function() {
+            if (parseInt($(this).val()) === 2) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number
+                $('#display-genre-select').show(600);
+            } else {
+                $('#display-genre-select').hide(600);
+                $('#singleGenre').val(''); // zapobiega zachowaniu zaznaczonej opcji w przypadku zmiany rodzaju literackiego
+                // na inny niż 'prose'
+            }
         }
     },
     eventHandlers: {
@@ -332,6 +343,7 @@ var app = {
             $('#container').on('click', '#search-books-btn', app.actions.displayBookSearch);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
+            $('#container').on('change', '#singleForm', app.actions.displayGenreSelect);
         },
         registerOnFormsGenresLoaded: function() {
             app.actions.displaySubmenuForms();
