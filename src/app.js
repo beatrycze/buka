@@ -59,7 +59,7 @@ var app = {
                 }));
                 $.validate({
                     form: '#add-and-edit-book',
-                    onSuccess : function() {
+                    onSuccess: function() {
                         app.actions.updateBook();
                     }
                 });
