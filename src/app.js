@@ -39,6 +39,15 @@ var app = {
                 }));
             });
         },
+        validateAddBookForm: function() {
+            $.validate({
+                form: '#add-and-edit-book',
+                modules: 'logic',
+                onSuccess: function() {
+                    app.actions.addBook();
+                }
+            });
+        },
         displayEditBookForm: function() {
             var bookId = $(this).attr('data-book-id');
             var bookPromise = app.models.book.getItem(bookId);
@@ -338,7 +347,7 @@ var app = {
             $('#open-submenu-genres').on('click', '.book-genre-link', app.actions.displayBooksFilteredByGenre);
             $('.book-genre-link').on('click', app.actions.displayBooksFilteredByGenre);
             $('#container').on('click', '#delete-book-btn', app.actions.deleteBook);
-            $('#container').on('click', '#add-book-btn', app.actions.addBook);
+            $('#container').on('click', '#add-book-btn', app.actions.validateAddBookForm);
             $('#container').on('click', '#edit-book-btn', app.actions.displayEditBookForm);
             $('#container').on('click', '#search-books-btn', app.actions.displayBookSearch);
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
