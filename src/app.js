@@ -150,7 +150,7 @@ var app = {
                     header: 'All books',
                     books: response
                 }));
-                app.eventHandlers.registerForAutocomplete();
+                app.eventHandlers.registerAutocompleterForAllBooksList();
                 removeSpinner();
             });
         },
@@ -190,7 +190,7 @@ var app = {
                     forms: responses[1],
                     genres: responses[2]
                 }));
-                app.eventHandlers.registerForAutocomplete();
+                app.eventHandlers.registerAutocompleterForFiltersPage();
                 removeSpinner();
             });
         },
@@ -377,9 +377,9 @@ var app = {
             app.actions.displaySubmenuForms();
             app.actions.displaySubmenuGenres();
         },
-        registerForAutocomplete: function() {
         // https://github.com/biggora/bootstrap-ajax-typeahead
-            $('#title-autocomplete').typeahead({
+        registerAutocompleterForFiltersPage: function() {
+            $('#title-autocomplete-on-filters-page').typeahead({
                 onSelect: function(item) {
                     var bookId = item.value;
                     app.actions.displaySingleBook(bookId);
@@ -395,6 +395,8 @@ var app = {
                     }
                 }
             });
+        },
+        registerAutocompleterForAllBooksList: function() {
             $('#title-autocomplete-on-books-list').typeahead({
                 onSelect: function(item) {
                     var bookId = item.value;
