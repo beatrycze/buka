@@ -45,6 +45,9 @@ var app = {
                 }));
             });
         },
+        clearBooksList: function() {
+            $('#all-books-list').html('');
+        },
         displayAddBookForm: function() {
             var bookTypesPromise = app.models.bookTypes.getCollection();
             var bookFormsPromise = app.models.bookForms.getCollection();
@@ -417,6 +420,7 @@ var app = {
             $('#title-autocomplete-on-books-list').typeahead({
                 onSelect: function(item) {
                     var bookId = item.value;
+                    app.actions.clearBooksList();
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
