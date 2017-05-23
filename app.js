@@ -401,9 +401,7 @@ var app = {
         // https://github.com/biggora/bootstrap-ajax-typeahead
             $('#title-autocomplete').typeahead({
                 onSelect: function(item) {
-                    // console.log(item);
                     var bookId = item.value;
-                    // console.log(bookId);
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
