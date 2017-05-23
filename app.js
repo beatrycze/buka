@@ -405,8 +405,8 @@ var app = {
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
-                    url: "http://localhost:3000/books",
-                    timeout: 500,
+                    url: API_URL + "/books",
+                    timeout: 100,
                     displayField: "title",
                     preDispatch: function(query) {
                         return {
@@ -422,8 +422,8 @@ var app = {
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
-                    url: "http://localhost:3000/books",
-                    timeout: 500,
+                    url: API_URL + "/books",
+                    timeout: 100,
                     displayField: "title",
                     preDispatch: function(query) {
                         return {
