@@ -12,6 +12,7 @@ var app = {
             app.templates.filterBooksPageTemplate = app.helper.compileSingleHbsTemplate('#filter-books');
             app.templates.wishListPageTemplate = app.helper.compileSingleHbsTemplate('#wish-list');
             app.templates.booksListTemplate = app.helper.compileSingleHbsTemplate('#books-list');
+            app.templates.bookTemplate = app.helper.compileSingleHbsTemplate('#single-book');
             app.templates.submenuFormsTemplate = app.helper.compileSingleHbsTemplate('#submenu-forms');
             app.templates.submenuGenresTemplate = app.helper.compileSingleHbsTemplate('#submenu-genres');
             // app.templates.formsListTemplate = app.helper.compileSingleHbsTemplate('#forms');
@@ -33,6 +34,14 @@ var app = {
             var homepageHtmlResult = app.templates.homepageTemplate(context);
             unhighlightMenuTab();
             $('#container').html(homepageHtmlResult);
+        },
+        displaySingleBook: function(bookId) {
+            app.models.book.getItem(bookId)
+            .then(function(response) {
+                $('#single-book-container').html(app.templates.bookTemplate({
+                    book: response
+                }));
+            });
         },
         displayAddBookForm: function() {
             var bookTypesPromise = app.models.bookTypes.getCollection();
@@ -382,19 +391,22 @@ var app = {
         // https://github.com/biggora/bootstrap-ajax-typeahead
             $('#title-autocomplete').typeahead({
                 onSelect: function(item) {
-                    console.log(item);
+                    // console.log(item);
+                    var bookId = item.value;
+                    // console.log(bookId);
+                    app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
                     url: "http://localhost:3000/books",
                     timeout: 500,
                     displayField: "title",
-                    preDispatch: function (query) {
+                    preDispatch: function(query) {
                         return {
                             title_like: query
                         }
                     }
                 }
-            })
+            });
         }
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready
