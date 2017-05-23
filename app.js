@@ -99,6 +99,7 @@ var app = {
             })
             .then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListTemplate({
+                    displayAutocomplete: false,
                     header: 'Paper books',
                     books: response
                 }));
@@ -113,6 +114,7 @@ var app = {
             })
             .then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
+                    displayAutocomplete: false,
                     header: 'E-books',
                     books: response
                 }));
@@ -126,6 +128,7 @@ var app = {
                 bookTypeIds: [3]
             }).then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
+                    displayAutocomplete: false,
                     header: 'Audiobooks',
                     books: response
                 }));
@@ -138,9 +141,11 @@ var app = {
             app.models.book.getCollection({})
             .then(function(response) {
                 $('#container').html(app.templates.booksListTemplate({
+                    displayAutocomplete: true,
                     header: 'All books',
                     books: response
                 }));
+                app.eventHandlers.registerForAutocomplete();
                 removeSpinner();
             });
         },
@@ -396,6 +401,22 @@ var app = {
                     // console.log(item);
                     var bookId = item.value;
                     // console.log(bookId);
+                    app.actions.displaySingleBook(bookId);
+                },
+                ajax: {
+                    url: "http://localhost:3000/books",
+                    timeout: 500,
+                    displayField: "title",
+                    preDispatch: function(query) {
+                        return {
+                            title_like: query
+                        }
+                    }
+                }
+            });
+            $('#title-autocomplete-on-books-list').typeahead({
+                onSelect: function(item) {
+                    var bookId = item.value;
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {

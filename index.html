@@ -306,6 +306,21 @@
             <h2>{{header}}</h2>
             <p>Total: <kbd><strong>{{books.length}}</strong></kbd></p>
         </p>
+
+        {{#if displayAutocomplete}}
+        <div>
+            <div class="row-separator-top spacer">
+                <label for="title-autocomplete-on-books-list">Enter a book title to display a specific book</label>
+                <input type="text" class="form-control half-width" id="title-autocomplete-on-books-list" placeholder="Book title" value="">
+            </div>
+            <div class="spinner-autocomplete" style="position: relative; top: 20px">
+            </div>
+
+            <div id="single-book-container">
+            </div>
+        </div>
+        {{/if}}
+
         <ol>
         {{#each books}}
             <li>
