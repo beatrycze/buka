@@ -19,6 +19,19 @@ var app = {
             unhighlightMenuTab();
             $('#container').html(homepageHtmlResult);
         },
+        displaySingleBook: function(bookId) {
+            addMediumSpinner();
+            app.models.book.getItem(bookId)
+            .then(function(response) {
+                removeMediumSpinner();
+                $('#single-book-container').html(app.templates.singleBook({
+                    book: response
+                }));
+            });
+        },
+        clearBooksList: function() {
+            $('#all-books-list').html('');
+        },
         displayAddBookForm: function() {
             var bookTypesPromise = app.models.bookTypes.getCollection();
             var bookFormsPromise = app.models.bookForms.getCollection();
@@ -91,6 +104,7 @@ var app = {
             })
             .then(function(response) { // wywołania ajaxa zwracają PROMISY; promista to OBIEKT, który ma metodę .then()
                 $('#container').html(app.templates.booksListPage({
+                    displayAutocomplete: false,
                     header: 'Paper books',
                     books: response
                 }));
@@ -105,6 +119,7 @@ var app = {
             })
             .then(function(response) {
                 $('#container').html(app.templates.booksListPage({
+                    displayAutocomplete: false,
                     header: 'E-books',
                     books: response
                 }));
@@ -118,6 +133,7 @@ var app = {
                 bookTypeIds: [3]
             }).then(function(response) {
                 $('#container').html(app.templates.booksListPage({
+                    displayAutocomplete: false,
                     header: 'Audiobooks',
                     books: response
                 }));
@@ -130,9 +146,11 @@ var app = {
             app.models.book.getCollection({})
             .then(function(response) {
                 $('#container').html(app.templates.booksListPage({
+                    displayAutocomplete: true,
                     header: 'All books',
                     books: response
                 }));
+                app.eventHandlers.registerForAutocomplete();
                 removeSpinner();
             });
         },
@@ -172,6 +190,7 @@ var app = {
                     forms: responses[1],
                     genres: responses[2]
                 }));
+                app.eventHandlers.registerForAutocomplete();
                 removeSpinner();
             });
         },
@@ -357,6 +376,42 @@ var app = {
         registerOnFormsGenresLoaded: function() {
             app.actions.displaySubmenuForms();
             app.actions.displaySubmenuGenres();
+        },
+        registerForAutocomplete: function() {
+        // https://github.com/biggora/bootstrap-ajax-typeahead
+            $('#title-autocomplete').typeahead({
+                onSelect: function(item) {
+                    var bookId = item.value;
+                    app.actions.displaySingleBook(bookId);
+                },
+                ajax: {
+                    url: API_URL + "/books",
+                    timeout: 100,
+                    displayField: "title",
+                    preDispatch: function(query) {
+                        return {
+                            title_like: query
+                        }
+                    }
+                }
+            });
+            $('#title-autocomplete-on-books-list').typeahead({
+                onSelect: function(item) {
+                    var bookId = item.value;
+                    app.actions.clearBooksList();
+                    app.actions.displaySingleBook(bookId);
+                },
+                ajax: {
+                    url: API_URL + "/books",
+                    timeout: 100,
+                    displayField: "title",
+                    preDispatch: function(query) {
+                        return {
+                            title_like: query
+                        }
+                    }
+                }
+            });
         }
     },
     // wszystko uruchamiane w app.init ma zagwarantowane, że document jest już ready

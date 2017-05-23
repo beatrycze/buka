@@ -1,6 +1,7 @@
 <div class="spacer">
     <h2>{{title}}</h2>
 </div>
+
 <div>
     <label class="block text-uppercase">Book types</label>
     {{#each types}}
@@ -10,6 +11,7 @@
     {{/each}}
 </div>
 <hr>
+
 <div>
     <label class="block text-uppercase">Book forms</label>
     {{#each forms}}
@@ -19,6 +21,7 @@
     {{/each}}
 </div>
 <hr>
+
 <div>
     <label class="block text-uppercase">Book genres</label>
     {{#each genres}}
@@ -28,6 +31,7 @@
     {{/each}}
 </div>
 <hr>
+
 <div>
     <label class="block text-uppercase">Is borrowed?</label>
     <label class="radio-inline">
@@ -42,4 +46,15 @@
 </div>
 <div class="row-separator-top">
     <button type="button" id="search-books-btn" class="btn btn-primary">Search</button>
+</div>
+<hr>
+
+<div class="row-separator-top spacer">
+    <label for="title-autocomplete"><h3>Enter a book title to display a specific book</h3></label>
+    <input type="text" class="form-control half-width" id="title-autocomplete" placeholder="Book title" value="">
+</div>
+<div class="spinner-autocomplete" style="position: relative; top: 20px">
+</div>
+
+<div id="single-book-container">
 </div>
