@@ -36,8 +36,10 @@ var app = {
             $('#container').html(homepageHtmlResult);
         },
         displaySingleBook: function(bookId) {
+            addMediumSpinner();
             app.models.book.getItem(bookId)
             .then(function(response) {
+                removeMediumSpinner();
                 $('#single-book-container').html(app.templates.bookTemplate({
                     book: response
                 }));

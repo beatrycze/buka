@@ -113,6 +113,21 @@ body {
   animation: spinner .6s linear infinite;
 }
 
+.spinner-medium {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 25%;
+  width: 50px;
+  height: 50px;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border-top: 2px solid #8f8b8b;
+  border-right: 3px solid #5a4496;
+  animation: spinner .6s linear infinite;
+}
+
 .btn-default-delete {
   color: #333;
   background-color: #e6e6e6;
