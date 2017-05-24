@@ -9,8 +9,8 @@
         <input type="checkbox" class="checkbox-book-type" data-book-type-id={{id}} data-book-type-type={{type}}> {{type}}
     </label>
     {{/each}}
-</div>
 <hr>
+</div>
 
 <div>
     <label class="block text-uppercase">Book forms</label>
@@ -19,18 +19,18 @@
         <input type="checkbox" class="checkbox-book-form" data-book-form-id={{id}} data-book-form-type={{type}}> {{type}}
     </label>
     {{/each}}
-</div>
 <hr>
+</div>
 
-<div>
+<div id="display-genre-checkboxes" {{#unless displayGenreCheckboxes}}style="display: none;"{{/unless}}>
     <label class="block text-uppercase">Book genres</label>
     {{#each genres}}
     <label class="checkbox-inline">
         <input type="checkbox" class="checkbox-book-genre" data-book-genre-id={{id}} data-book-genre-type={{type}}> {{type}}
     </label>
     {{/each}}
-</div>
 <hr>
+</div>
 
 <div>
     <label class="block text-uppercase">Is borrowed?</label>
@@ -46,8 +46,8 @@
 </div>
 <div class="row-separator-top">
     <button type="button" id="search-books-btn" class="btn btn-primary">Search</button>
-</div>
 <hr>
+</div>
 
 <div class="row-separator-top spacer">
     <label for="title-autocomplete-on-filters-page"><h3>Enter a book title to display a specific book</h3></label>

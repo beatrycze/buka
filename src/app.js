@@ -92,7 +92,7 @@ var app = {
         },
         displayWishListPage: function() {
             highlightMenuTab('menuTabWishList');
-            var context = {title: 'Here will be a list of books that I want to have.'};
+            var context = {title: 'Here will be a list of books that I want to have'};
             var wishListPageHtmlResult = app.templates.wishListPage(context);
             $('#container').html(wishListPageHtmlResult);
         },
@@ -185,7 +185,8 @@ var app = {
             Promise.all([bookTypesPromise, bookFormsPromise, bookGenresPromise])
             .then(function(responses) {
                 $('#container').html(app.templates.filtersPage({
-                    title: 'Use these filters to find the books you are looking for.',
+                    title: 'Use these filters to find the books you are looking for',
+                    displayGenreCheckboxes: false,
                     types: responses[0],
                     forms: responses[1],
                     genres: responses[2]
@@ -343,14 +344,22 @@ var app = {
             }
         },
         displayGenreSelect: function() {
-            if (parseInt($(this).val()) === 2) { // wartość inputa z HTML to zawsze string, dlat potrzebna jest zamiana na number
+            if (parseInt($(this).val()) === 2) {
                 $('#display-genre-select').show(600);
             } else {
                 $('#display-genre-select').hide(600);
                 $('#singleGenre').val(''); // zapobiega zachowaniu zaznaczonej opcji w przypadku zmiany rodzaju literackiego
                 // na inny niż 'prose'
             }
-        }
+        },
+        displayGenreCheckboxes: function() {
+            if ( $(this).is(':checked') ) { // alternatywny zapis: $(this).prop('checked')
+                $('#display-genre-checkboxes').show(600);
+            } else {
+                $('#display-genre-checkboxes').hide(600);
+                $('.checkbox-book-genre').prop('checked', false); // w .prop i .attr 1 parametr to GETter, jeśli są 2 - to SETter
+            }
+        },
     },
     eventHandlers: {
         registerOnInit: function() {
@@ -372,6 +381,7 @@ var app = {
             $('#container').on('click', '#cancel-btn-link', app.actions.displayHomepage);
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
             $('#container').on('change', '#singleForm', app.actions.displayGenreSelect);
+            $('#container').on('change', 'input.checkbox-book-form[data-book-form-type="prose"]', app.actions.displayGenreCheckboxes);
         },
         registerOnFormsGenresLoaded: function() {
             app.actions.displaySubmenuForms();
