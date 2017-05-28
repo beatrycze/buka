@@ -3,7 +3,7 @@ body {
 }
 
 .starter-template {
-  padding: 40px 15px;
+  padding: 40px 0px;
   text-align: center;
 }
 
@@ -158,4 +158,22 @@ body {
 
 .half-width {
   width: 50%;
+}
+
+.panel {
+  margin-top: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.panel-title {
+  font-size: 14px;
+}
+
+.panel-body {
+  font-size: 13px;
+}
+
+button.close {
+  line-height: 0.8;
 }

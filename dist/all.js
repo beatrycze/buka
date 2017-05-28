@@ -201,7 +201,7 @@ var app = {
             highlightMenuTab('menuTabBookList');
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection({
-                bookFormIds: [bookFormId]
+                bookFormIds: [parseInt(bookFormId)]
             })
             .then(function(response) {
                 $('#container').html(app.templates.booksListPage({
@@ -217,7 +217,7 @@ var app = {
             highlightMenuTab('menuTabBookList');
             addSpinner(); // zagadnienie: jak skeszowana promisa ma NIE pokazywać spinnera?
             app.models.book.getCollection({
-                bookGenreIds: [bookGenreId]
+                bookGenreIds: [parseInt(bookGenreId)]
             }).then(function(response) {
                 $('#container').html(app.templates.booksListPage({
                     header: capitalize(bookGenreType),
@@ -249,9 +249,9 @@ var app = {
                 title: $('#inputBookTitle').val(),
                 author: $('#inputBookAuthor').val(),
                 description: $('#inputBookDescription').val(),
-                bookTypeId: $('#singleType').val(),
-                bookFormId: $('#singleForm').val(),
-                bookGenreId: $('#singleGenre').val(),
+                bookTypeId: parseInt($('#singleType').val()),
+                bookFormId: parseInt($('#singleForm').val()),
+                bookGenreId: parseInt($('#singleGenre').val()),
                 borrowed: $('#borrowedCheckbox').is(':checked') // zwraca true or false
             };
 
@@ -269,9 +269,9 @@ var app = {
                 title: $('#inputBookTitle').val(),
                 author: $('#inputBookAuthor').val(),
                 description: $('#inputBookDescription').val(),
-                bookTypeId: $('#singleType').val(),
-                bookFormId: $('#singleForm').val(),
-                bookGenreId: $('#singleGenre').val(),
+                bookTypeId: parseInt($('#singleType').val()),
+                bookFormId: parseInt($('#singleForm').val()),
+                bookGenreId: parseInt($('#singleGenre').val()),
                 borrowed: $('#borrowedCheckbox').is(':checked') // zwraca true or false
             };
             addSpinner();
@@ -294,21 +294,21 @@ var app = {
 
             $('input.checkbox-book-type').each(function(index, el) { // jQuery'owa metoda 'each' (w JS: forEach)
                 if (el.checked) { // JS'owy odpowiednik jQuery'owego $('el')is(':checked')
-                    searchBookFilters.bookTypeIds.push($(el).attr('data-book-type-id'));
+                    searchBookFilters.bookTypeIds.push(parseInt($(el).attr('data-book-type-id')));
                     filterLabels.push($(el).attr('data-book-type-type'));
                 }
             });
 
             $('input.checkbox-book-form').each(function(index, el) {
                 if (el.checked) {
-                    searchBookFilters.bookFormIds.push($(el).attr('data-book-form-id'));
+                    searchBookFilters.bookFormIds.push(parseInt($(el).attr('data-book-form-id')));
                     filterLabels.push($(el).attr('data-book-form-type'));
                 }
             });
 
             $('input.checkbox-book-genre').each(function(index, el) {
                 if (el.checked) {
-                    searchBookFilters.bookGenreIds.push($(el).attr('data-book-genre-id'));
+                    searchBookFilters.bookGenreIds.push(parseInt($(el).attr('data-book-genre-id')));
                     filterLabels.push($(el).attr('data-book-genre-type'));
                 }
             });
@@ -382,6 +382,7 @@ var app = {
             $('#container').on('change', '#singleType', app.actions.displayBorrowedCheckbox);
             $('#container').on('change', '#singleForm', app.actions.displayGenreSelect);
             $('#container').on('change', 'input.checkbox-book-form[data-book-form-type="prose"]', app.actions.displayGenreCheckboxes);
+            $('.close').on('click', hideWarningPanel);
         },
         registerOnFormsGenresLoaded: function() {
             app.actions.displaySubmenuForms();
@@ -395,7 +396,8 @@ var app = {
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
-                    url: API_URL + "/books",
+                    url: app.models.book._URL,
+                    preProcess: app.models.book._mapResponse,
                     timeout: 100,
                     displayField: "title",
                     preDispatch: function(query) {
@@ -414,7 +416,8 @@ var app = {
                     app.actions.displaySingleBook(bookId);
                 },
                 ajax: {
-                    url: API_URL + "/books",
+                    url: app.models.book._URL,
+                    preProcess: app.models.book._mapResponse,
                     timeout: 100,
                     displayField: "title",
                     preDispatch: function(query) {
@@ -488,9 +491,29 @@ function unhighlightMenuTab() {
     app.selectors.menuTabAll.removeClass('active');
 }
 
-var API_URL = 'http://localhost:3000';
+function hideWarningPanel() {
+    $('.panel').hide();
+}
+
+var API_URL = 'https://buka-test.firebaseio.com';
+
+function mapToArray(inputObject) {
+  return Object.entries(inputObject).map(function(pair){
+    var id = pair[0], obj = pair[1];
+    return Object.assign({id: id}, obj);
+  });
+}
+
+function removeFirebaseNull(response){ // handle Firebase null in Array
+    if(response[0] === null){
+        response = response.slice(1)
+    }
+    return response;
+}
 
 app.models.book = {
+    _URL: API_URL + '/books.json',
+    _mapResponse: mapToArray,
     getCollection: function(filterParams) {
         var queryStringParts = [];
 
@@ -524,27 +547,78 @@ app.models.book = {
             var queryString = queryStringParts.filter(function(el) {
                 return el.length > 0;
             }).join('&');
-            return $.get(API_URL + '/books?' + queryString);
+            var ajax = $.get(API_URL + '/books.json?' + queryString);
         } else {
-            return $.get(API_URL + '/books'); // w app.js muszę przekazać pusty obiekt jako argument funkcji (!)
+            var ajax = $.get(API_URL + '/books.json'); // w app.js muszę przekazać pusty obiekt jako argument funkcji (!)
         }
+        return ajax.then(mapToArray).then(function filterClientSide(books){
+            var result = books;
+            // poniższy warunek MUSI sprawdzać aż 2 rzeczy:
+            // że dana lista może nie istnieć w ogóle
+            // oraz że dana lista może być pusta
+            // czyli wchodzimy w IFa (filtrujemy) tylko wtedy gdy lista istnieje oraz ma jakieś elementy
+            if (filterParams.bookTypeIds && filterParams.bookTypeIds.length){
+                result = result.filter(function(book){
+                    // indexOf zwraca indeks, pod którym element istnieje w tablicy
+                    // 0 jeśli jest pod zerowym indeksem, itp.
+                    // Jeśli nie ma, to -1 (stąd porównanie do -1)
+                    return filterParams.bookTypeIds.indexOf(book.bookTypeId) > -1;
+                })
+            }
+            if (filterParams.bookGenreIds && filterParams.bookGenreIds.length){
+                result = result.filter(function(book){
+                    return filterParams.bookGenreIds.indexOf(book.bookGenreId) > -1;
+                })
+            }
+            if (filterParams.bookFormIds && filterParams.bookFormIds.length){
+                result = result.filter(function(book){
+                    return filterParams.bookFormIds.indexOf(book.bookFormId) > -1;
+                })
+            }
+            if (filterParams.borrowed){
+                result = result.filter(function(book){
+                    return filterParams.borrowed.indexOf(book.borrowed + '') > -1;
+                    // coś + '' - rzutowanie do stringa, alternatywa do (coś).toString();
+                    // TODO - powinno być przekazywanie booleana, a nie stringa zawierającego booleana ("true")
+                    // TODO bo teraz ID jest pobierane jQuery data attr jako string
+                    // TODO i poniższy/powyższy filter nie działałby, bo string vs liczba - inny typ
+                })
+            }
+            return result;
+        });
     },
     getItem: function(id) {
-        return $.get(API_URL + '/books/' + id);
+        return $.get(API_URL + '/books/' + id + '.json')
+        .then(function(book){ // handle Firebase lack of id passing
+            book.id = id;
+            return book;
+        });
     },
     createItem: function(itemData) {
-        return $.post(API_URL + '/books', itemData);
+        // return $.post(API_URL + '/books.json', itemData);
+        return $.ajax({
+	        url: API_URL + '/books/' + '.json',
+	        method: 'post',
+	        data: JSON.stringify(itemData)
+        });
     },
+    // updateItem: function(id, itemData) {
+    //     return $.ajax({
+    //         url: API_URL + '/books/' + id,
+    //         type: 'PUT',
+    //         data: itemData
+    //     });
+    // },
     updateItem: function(id, itemData) {
         return $.ajax({
-            url: API_URL + '/books/' + id,
-            type: 'PUT',
-            data: itemData
+            url: API_URL + '/books/' + id + '.json',
+            method: 'put',
+            data: JSON.stringify(itemData)
         });
     },
     deleteItem: function(id) {
         return $.ajax({
-            url: API_URL + '/books/' + id,
+            url: API_URL + '/books/' + id + '.json',
             type: 'DELETE'
         })
     }
@@ -552,7 +626,8 @@ app.models.book = {
 
 app.models.bookTypes = {
     getCollection: function() {
-        return $.get(API_URL + '/bookTypes');
+        return $.get(API_URL + '/bookTypes.json')
+        .then(removeFirebaseNull);
     }
 };
 
@@ -564,7 +639,8 @@ app.models.bookTypes = {
         getCollection: function() {
             if(!cachedBookForms) { // warunek w if-e zawsze zrzuca się do true/false (uwaga na tzw. falsy values);
                 // jeśli false, to wykonywany jest else (o ile został określony)
-                cachedBookForms = $.get(API_URL + '/bookForms');
+                cachedBookForms = $.get(API_URL + '/bookForms.json')
+                .then(removeFirebaseNull);
             }
             return cachedBookForms;
             // żaden kod po return nie zostanie nigdy wykonany
@@ -575,7 +651,8 @@ app.models.bookTypes = {
     app.models.bookGenres = {
         getCollection: function() {
             if(!cachedBookGenres) {
-                cachedBookGenres = $.get(API_URL + '/bookGenres');
+                cachedBookGenres = $.get(API_URL + '/bookGenres.json')
+                .then(removeFirebaseNull);
             }
             return cachedBookGenres;
         }

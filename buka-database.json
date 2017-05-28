@@ -1,0 +1,297 @@
+{
+  "bookForms" : [ null, {
+    "id" : 1,
+    "type" : "poetry"
+  }, {
+    "id" : 2,
+    "type" : "prose"
+  }, {
+    "id" : 3,
+    "type" : "drama"
+  } ],
+  "bookGenres" : [ null, {
+    "id" : 1,
+    "type" : "novel"
+  }, {
+    "id" : 2,
+    "type" : "reportage"
+  }, {
+    "id" : 3,
+    "type" : "biography"
+  }, {
+    "id" : 4,
+    "type" : "interview"
+  }, {
+    "id" : 5,
+    "type" : "essay"
+  }, {
+    "id" : 6,
+    "type" : "autobiography"
+  }, {
+    "id" : 7,
+    "type" : "diaries"
+  }, {
+    "id" : 8,
+    "type" : "letters"
+  }, {
+    "id" : 9,
+    "type" : "feuilleton"
+  }, {
+    "id" : 10,
+    "type" : "popular science books"
+  } ],
+  "bookTypes" : [ null, {
+    "id" : 1,
+    "type" : "paper book"
+  }, {
+    "id" : 2,
+    "type" : "ebook"
+  }, {
+    "id" : 3,
+    "type" : "audiobook"
+  } ],
+  "books" : {
+    "-KlFAbJFd&78dskljdgl" : {
+      "author" : "Andrzej Stasiuk",
+      "bookFormId" : 2,
+      "bookGenreId" : 4,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "Cykl rozmów autora z dziennikarką „Gazety Wyborczej”. Zapis ich spotkań to niekończąca się opowieść Stasiuka o życiu i książkach, o kobietach i miłości, o podróżach i samochodach, o Polsce i Rosji, o religii i polityce. Czytelnik wyrusza za nim w podróż z Wołowca na Podlasie, do Albanii i na Wschód aż do Mongolii i  Chin, a przede wszystkim po wewnętrznym krajobrazie osobistych wspomnień, gdyż – jak mówi Stasiuk – 'Moje życie jest moim zawodem'. (źródło opisu: czarne.com.pl)",
+      "title" : "Życie to jednak strata jest"
+    },
+    "-KlFAbMnaIbXJ0978w5j" : {
+      "author" : "Andrzej Stasiuk",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "Nagroda Literacka NIKE 2005",
+      "title" : "Jadąc do Babadag"
+    },
+    "-KlFAbMnaIbXJskljdgl" : {
+      "author" : "Andrzej Stasiuk",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 2,
+      "borrowed" : false,
+      "description" : "(…) staje się co jakiś czas, żeby odpocząć, żeby się obejrzeć, żeby policzyć, ile już było, a ile jeszcze zostało. Taka jest ta książka: sprawdzam gdzie byłem, gdzie jestem, dokąd się wybieram. Oprócz tego oczywiście niezwykła ilość celnych spostrzeżeń, głębokich przemyśleń oraz barwnych opisów. Z szacunkiem: Autor (źródło opisu: czarne.com.pl)",
+      "title" : "Nie ma ekspresów przy żółtych drogach"
+    },
+    "-KlFAbMnaIbXJvNw98kw" : {
+      "author" : "Andrzej Stasiuk",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "Ukraina, Rosja, Azja. Narrator napotyka ludzi, duchy i policjantów. Ale przede wszystkim opowiada o swojej miłości do samochodów. Snuje sowizdrzalską elegię na odejście silnika spalinowego. (źródło opisu: czarne.com.pl)",
+      "title" : "Osiołkiem"
+    },
+    "-KlFAbjkfd8904378w5j" : {
+      "author" : "Andrzej Stasiuk",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "Zbiór prozy artystycznej Stasiuka jest stworzony z natury, wyobraźni i cywilizacyjnego śmietnika. Zanim zacząłem go czytać, nie przypuszczałem, że można tak malować prozą. Mierzy z rozmysłem i nie znam w prozie celniejszych ani bardziej rewelacyjnych metafor. (Henryk Grynberg, źródło opisu: czarne.com.pl)",
+      "title" : "Dukla"
+    },
+    "-KlFAbjkfd89043ihagt" : {
+      "author" : "Mariusz Szczygieł",
+      "bookFormId" : 2,
+      "bookGenreId" : 2,
+      "bookTypeId" : 3,
+      "borrowed" : false,
+      "description" : "Reportaże Szczygła (wówczas dwudziestokilkuletniego autora) z początku lat dziewięćdziesiątych.",
+      "title" : "Niedziela, która zdarzyła się w środę"
+    },
+    "-KlFAbjkfd89043iuqii" : {
+      "author" : "Maciej Malicki",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "No i proszę: można opisać życie. Trzeba tylko zatrzymać to, co umyka, ponieważ nie podejrzewamy, że jest coś warte. Trzeba tylko zapisać pamięć o rzeczach codziennych, bo innych przecież nie było... Piękna i czuła książka. Amen. (Andrzej Stasiuk, źródło opisu: czarne.com.pl)",
+      "title" : "Saga ludu"
+    },
+    "-KlV9Ndom9Yjj6S7JfPS" : {
+      "author" : "Andrzej Bursa",
+      "bookFormId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "",
+      "title" : "Wiersze"
+    },
+    "-KlVAnkE2Pir8_pe6nTe" : {
+      "author" : "Tadeusz Różewicz",
+      "bookFormId" : 3,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "",
+      "title" : "Kartoteka"
+    },
+    "-KlVBUtMI6x_rzDRCFnR" : {
+      "author" : "Dorota Masłowska",
+      "bookFormId" : 2,
+      "bookGenreId" : 9,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "Zbiór publikowanych przez Dorotę Masłowską w magazynie \"Zwierciadło\" w latach 2011-2013 tekstów o jedzeniu. Tekstów, które jednak mocno odbiegają od tradycyjnego pojęcia rubryki kulinarnej, jeśli go wręcz jawnie nie przedrzeźniają. (źródło opisu: wydawnictwoliterackie.pl)",
+      "title" : "Więcej niż możesz zjeść - felietony parakulinarne"
+    },
+    "-KlVBeB-ogPZVUUVBDX2" : {
+      "author" : "Dariusz Zaborek",
+      "bookFormId" : 2,
+      "bookGenreId" : 4,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "",
+      "title" : "Czesałam ciepłe króliki. Rozmowa z Alicją Gawlikowską-Świerczyńską"
+    },
+    "-KlVC5AFQQ0w9eD7IQny" : {
+      "author" : "Solomon Wołkow",
+      "bookFormId" : 2,
+      "bookGenreId" : 4,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "",
+      "title" : "Świat poety. Rozmowy z Josifem Brodskim"
+    },
+    "-KlVCGwKBLNo1VF9tVZR" : {
+      "author" : "Teodor Parnicki",
+      "bookFormId" : 2,
+      "bookGenreId" : 7,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "",
+      "title" : "Dzienniki z lat osiemdziesiątych"
+    },
+    "-KlVCRGBfWZvjCFWrRfj" : {
+      "author" : "Witold Gombrowicz",
+      "bookFormId" : 2,
+      "bookGenreId" : 7,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "tomy I-III",
+      "title" : "Dzienniki"
+    },
+    "-KlVDYDSWWA_vINYsXGT" : {
+      "author" : "Arthur Miller",
+      "bookFormId" : 3,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "Dramat amerykańskiego autora z 1952 r., oparty na procesach o czary, które rozegrały się w 1692 r. w miasteczku Salem.",
+      "title" : "Czarownice z Salem"
+    },
+    "-KlVEanHW28pwZiivB1C" : {
+      "author" : "Adam Wajrak",
+      "bookFormId" : 2,
+      "bookGenreId" : 10,
+      "bookTypeId" : 3,
+      "borrowed" : false,
+      "description" : "Opowieść o - jak to ujmuje sam autor, mieszkaniec Puszczy Białowieskiej - jednym z najbardziej prześladowanych dużych ssaków, jakie żyją na naszej planecie.",
+      "title" : "Wilki"
+    },
+    "-KlVGUIt35uIoEoLciHs" : {
+      "author" : "Dorota Masłowska, Agnieszka Drotkiewicz",
+      "bookFormId" : 2,
+      "bookGenreId" : 4,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "Masłowska o sobie i swoich książkach w rozmowie z redaktorką pisma \"Lampa\".",
+      "title" : "Dusza światowa"
+    },
+    "-KlVHYKtAIHx270NFyxO" : {
+      "author" : "Nikogo nie ma w domu",
+      "bookFormId" : 2,
+      "bookGenreId" : 5,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "Bezlitosna rozprawa z pojęciami, które we współczesnym świecie są traktowane przez wielu jako tabu albo przemilczane jako zbyt niewygodne. Ugrešić nie stroni od niewygodnych pytań, z drwiącym spojrzeniem przygląda się procesowi globalizacji i skutkom politycznej poprawności. Zastanawia się nad pojęciem domu, zakorzenienia w określonej kulturze poddanej wpływom multikulturowego świata i definicją tożsamości. (źródło opisu: znak.com.pl)",
+      "title" : "Dubravka Ugrešić"
+    },
+    "-KlXXR3BYO22SmZN3jD5" : {
+      "author" : "Maciej Malicki",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "Czwarta powieść Malickiego, (...) z absolutną afirmacją opisuje świat, w którym wszystko, każdy najmniejszy szczegół, jest równie ważne. (...) Malicki stwarza świat od nowa i mówi nam: to jedyny, jaki mamy. I wszystko w nim jest. „Droga, tory kolejowe, pociąg, morze, góry, dom, kawa, papierosy, bar, cmentarz, pobocze, pies, las, rzeka, most, książki, kanapa, płyty, ławka, stacja, piwo, szkoła, sklep, warzywniak, kościół, ludzie, fotel, bliscy etc. Wszystko jest. Nie ma powrotu”. (źródło opisu: czarne.com.pl)",
+      "title" : "Wszystko jest"
+    },
+    "-KlXXySIXfD9RFXqFZ5W" : {
+      "author" : "Michaił Bułhakow",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "Uznawana za jedną z najważniejszych powieści XX wieku, a jednocześnie za jedno z najbardziej tajemniczych dzieł światowej literatury, pełne zagadek, symboli, niedopowiedzeń.",
+      "title" : "Mistrz i Małogrzata"
+    },
+    "-KlXYa1jrrWVDteNflO7" : {
+      "author" : "Lew Tołstoj",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "",
+      "title" : "Anna Karenina"
+    },
+    "-KlXa5bXEDLwR-OksADQ" : {
+      "author" : "Marcin Wicha",
+      "bookFormId" : 2,
+      "bookGenreId" : 5,
+      "bookTypeId" : 2,
+      "borrowed" : false,
+      "description" : "Te krótkie, finezyjne teksty są jak obrazki z kalejdoskopu – przegląda się w nich estetyczne oblicze Polski ostatnich czterdziestu lat. Łączą je poczucie humoru, erudycja i literacki talent autora. Marcin Wicha pokazuje, że design nie jest tak niewinny, jak by się mogło zdawać. Ale że choć w projektowaniu zdarzają się groteskowe sytuacje, nie przestaje ono być fantastycznym zajęciem. (źródło opisu: karakter.pl)",
+      "title" : "Jak przestałem kochać design"
+    },
+    "-KlXbp5ONUJbLHyudvK7" : {
+      "author" : "Karol Irzykowski",
+      "bookFormId" : 2,
+      "bookGenreId" : 1,
+      "bookTypeId" : 2,
+      "borrowed" : false,
+      "description" : "Wydana po raz pierwszy w 1903 r. znakomita eksperymentalna powieść filozoficzno-psychologiczno-socjologiczna, z silnym ładunkiem autotematyzmu.",
+      "title" : "Pałuba. Sny Marii Dunin"
+    },
+    "-KltVA4UIY1gRzFukIiy" : {
+      "author" : "Wisława Szymborska",
+      "bookFormId" : 1,
+      "bookTypeId" : 1,
+      "borrowed" : true,
+      "description" : "Drugi ze zbiorów wierszy wydanych po otrzymaniu przez Szymborską (w 1996 r.) literackiej Nagrody Nobla. Rok wydania: 2005.",
+      "title" : "Dwukropek"
+    },
+    "-Km1MP72QfujDQtHiIF3" : {
+      "author" : "Eugène Ionesco",
+      "bookFormId" : 3,
+      "bookTypeId" : 1,
+      "borrowed" : false,
+      "description" : "Kubuś, czyli uległość --- Morderca nie do wynajęcia --- Nosorożec --- Król umiera, czyli ceremonie --- Szaleństwo we dwoje",
+      "title" : "Dramaty wybrane"
+    }
+  },
+  "friends" : [ null, {
+    "name" : "Anna",
+    "surname" : "M"
+  }, {
+    "name" : "Joanna",
+    "surname" : "B"
+  }, {
+    "name" : "Danuta",
+    "surname" : "W"
+  }, {
+    "name" : "Zyta",
+    "surname" : "S"
+  } ],
+  "wishList" : [ null, {
+    "author" : "Kamil Bałuk",
+    "id" : 1,
+    "title" : "Wszystkie dzieci Louisa"
+  }, {
+    "author" : "Filip Springer",
+    "id" : 2,
+    "title" : "Księga zachwytów"
+  } ]
+}
