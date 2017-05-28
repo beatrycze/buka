@@ -20,6 +20,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "bootstrap-submenu": "^2.0.4",
+    "bootstrap-typeahead": "git+https://github.com/biggora/bootstrap-ajax-typeahead.git",
     "handlebars": "^4.0.6",
     "jquery": "^3.1.1",
     "jquery-form-validator": "^2.3.60"
