@@ -12,3 +12,7 @@ A personal library management application.
     `npm run api`
 
 Run above in separate consoles.
+
+## demo version
+
+https://beatrycze.github.io/buka/
